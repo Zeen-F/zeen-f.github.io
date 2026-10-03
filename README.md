@@ -12,6 +12,10 @@
 - 中文主页：`/zh/`
 - 英文简历：`/cv/`
 - 中文简历：`/zh/cv/`
+- 英文 TCAD 项目介绍：`/research-practice/codex-tcad-harness/`
+- 中文 TCAD 项目介绍：`/zh/research-practice/codex-tcad-harness/`
+
+TCAD 详情正文分别保存在 `data/tcad.en.html` 和 `data/tcad.zh.html`，原始图放在 `assets/images/tcad-detail/`。主页、简历及详情页均使用本站链接；详情页语言切换保留当前项目。
 
 简历页支持打印或另存为 PDF；论文缩略图支持悬停放大和点击查看。
 
@@ -29,7 +33,7 @@ npm run dev
 npm test
 ```
 
-检查双语页面、站内链接、图片路径、重复锚点和占位/过时文案。
+检查六个双语页面、站内链接、图片路径、重复锚点、项目语言切换和原始 TCAD 章节完整性。
 
 ## 发布
 
@@ -44,6 +48,7 @@ npm test
 - `assets/reference/main.css`：参考站公开的已编译主题样式，保持原样。
 - `assets/reference/main.min.js`：参考仓库的导航、侧栏、平滑滚动和 Magnific Popup 代码。
 - `assets/site.css` / `assets/site.js`：键盘可访问性、中英入口和附加简历页支持。
+- `assets/tcad.css`：与主页字体及色彩保持一致的响应式项目详情样式。
 - `scripts/template.mjs`：与参考主题匹配的页面结构，读取本人的资料。
 
 上游许可保存在 `LICENSE-AcadHomepage`。不包含参考站作者的个人信息、论文、证件、微信码、Google Analytics 或 Google Scholar 爬取配置。

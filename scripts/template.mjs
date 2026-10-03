@@ -11,19 +11,26 @@ const labels = {
 const anchors = {about:'about-me',research:'-research',news:'-news',publications:'-publications',awards:'-honors-and-awards',experience:'-experience',education:'-educations'};
 const emojis = {research:'🔍',news:'🔥',publications:'📝',awards:'🎖',experience:'💻',education:'📖'};
 const base = lang => lang==='en'?'/':'/zh/';
+export const tcadPath = 'research-practice/codex-tcad-harness/';
+const pagePath = page => page==='cv'?'cv/':page==='tcad'?tcadPath:'';
 const authors = pub => pub.authors.map(a=>a==='Zeen Fang'?`<strong>${escape(a)}</strong>`:escape(a)).join(', ');
 function publicationLinks(p,lang) {
   return `<p class="publication-links"><span>${escape(p.venue)}</span> <a href="${escape(p.doi)}" target="_blank" rel="noopener noreferrer">[${labels[lang].paper}]</a>${p.code?` <a href="${escape(p.code)}" target="_blank" rel="noopener noreferrer">[${labels[lang].code}]</a>`:''}</p>`;
 }
+function projectHref(p,lang) {return p.path?base(lang)+p.path:p.url;}
+function projectAnchor(p,lang,text) {
+  const href=projectHref(p,lang);
+  return `<a href="${escape(href)}"${href.startsWith('/')?'':' target="_blank" rel="noopener noreferrer"'}>${text}</a>`;
+}
 function projectTitle(p,lang) {
-  return p.url?`<a href="${escape(p.url)}" target="_blank" rel="noopener noreferrer">${t(p.title,lang)}</a>`:t(p.title,lang);
+  return projectHref(p,lang)?projectAnchor(p,lang,t(p.title,lang)):t(p.title,lang);
 }
 function projectLink(p,lang) {
-  return p.url?`<p><a href="${escape(p.url)}" target="_blank" rel="noopener noreferrer">${labels[lang].project} ↗</a></p>`:'';
+  return projectHref(p,lang)?`<p>${projectAnchor(p,lang,labels[lang].project+' →')}</p>`:'';
 }
 function heading(id,lang) {return `<h1 id="${anchors[id]}">${emojis[id]} ${labels[lang][id]}</h1>`;}
 function masthead(lang,page) {
-  const l=labels[lang], home=base(lang), alternate=base(lang==='en'?'zh':'en')+(page==='cv'?'cv/':'');
+  const l=labels[lang], home=base(lang), alternate=base(lang==='en'?'zh':'en')+pagePath(page);
   return `<div class="masthead"><div class="masthead__inner-wrap"><div class="masthead__menu"><nav id="site-nav" class="greedy-nav" aria-label="${lang==='en'?'Main navigation':'主导航'}"><button type="button" aria-label="${l.menu}" aria-expanded="false" aria-controls="overflow-nav"><div class="navicon"></div></button><ul class="visible-links"><li class="masthead__menu-item masthead__menu-item--lg masthead__menu-home-item"><a href="${home}#about-me">${l.home}</a></li>${['about','research','news','publications','awards','experience','education'].map(id=>`<li class="masthead__menu-item"><a href="${home}#${anchors[id]}">${l[id]}</a></li>`).join('')}<li class="masthead__menu-item nav-language"><a class="language-switch" href="${alternate}" lang="${lang==='en'?'zh-CN':'en'}" hreflang="${lang==='en'?'zh-CN':'en'}">${lang==='en'?'中文':'EN'}</a></li></ul><ul id="overflow-nav" class="hidden-links hidden"></ul></nav></div></div></div>`;
 }
 function sidebar(d,lang) {
@@ -36,8 +43,9 @@ function education(d,lang) {
 }
 function awards(d,lang) {return `<ul>${d.awards.map(a=>`<li><em>${escape(a.year)}</em>: 🎖️ <strong>${t(a.title,lang)}</strong>, ${t(a.note,lang)}</li>`).join('')}</ul>`;}
 function doc(d,lang,page,body) {
-  const home=base(lang),route=home+(page==='cv'?'cv/':''),title=`${tr(d.name,lang)} - ${page==='cv'?labels[lang].cv:'Homepage'}`;
-  return `<!doctype html><html lang="${lang==='en'?'en':'zh-CN'}" class="no-js"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escape(title)}</title><meta name="description" content="${t(d.description,lang)}"><meta name="author" content="Zeen Fang"><meta name="theme-color" content="#ffffff"><link rel="canonical" href="${d.siteUrl}${route}"><link rel="alternate" hreflang="en" href="${d.siteUrl}${page==='cv'?'/cv/':'/'}"><link rel="alternate" hreflang="zh-CN" href="${d.siteUrl}/zh/${page==='cv'?'cv/':''}"><link rel="alternate" hreflang="x-default" href="${d.siteUrl}${page==='cv'?'/cv/':'/'}"><meta property="og:title" content="${escape(title)}"><meta property="og:description" content="${t(d.description,lang)}"><meta property="og:url" content="${d.siteUrl}${route}"><meta property="og:type" content="website"><meta property="og:image" content="${d.siteUrl}${d.avatar}"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/reference/main.css"><link rel="stylesheet" href="/assets/site.css"><script>document.documentElement.className='js';</script></head><body data-page="${page}"><a class="skip-link" href="#main-content">${labels[lang].skip}</a>${masthead(lang,page)}${body}<script src="/assets/reference/main.min.js"></script><script src="/assets/site.js"></script></body></html>`;
+  const home=base(lang),route=home+pagePath(page),title=`${tr(d.name,lang)} - ${page==='cv'?labels[lang].cv:page==='tcad'?'Codex × TCAD':'Homepage'}`;
+  const description=page==='tcad'?d.projects.find(p=>p.id==='tcad').description:d.description;
+  return `<!doctype html><html lang="${lang==='en'?'en':'zh-CN'}" class="no-js"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escape(title)}</title><meta name="description" content="${t(description,lang)}"><meta name="author" content="Zeen Fang"><meta name="theme-color" content="#ffffff"><link rel="canonical" href="${d.siteUrl}${route}"><link rel="alternate" hreflang="en" href="${d.siteUrl}${'/'+pagePath(page)}"><link rel="alternate" hreflang="zh-CN" href="${d.siteUrl}/zh/${pagePath(page)}"><link rel="alternate" hreflang="x-default" href="${d.siteUrl}${'/'+pagePath(page)}"><meta property="og:title" content="${escape(title)}"><meta property="og:description" content="${t(description,lang)}"><meta property="og:url" content="${d.siteUrl}${route}"><meta property="og:type" content="website"><meta property="og:image" content="${d.siteUrl}${d.avatar}"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/assets/reference/main.css"><link rel="stylesheet" href="/assets/site.css">${page==='tcad'?'<link rel="stylesheet" href="/assets/tcad.css">':''}<script>document.documentElement.className='js';</script></head><body data-page="${page}"><a class="skip-link" href="#main-content">${labels[lang].skip}</a>${masthead(lang,page)}${body}<script src="/assets/reference/main.min.js"></script><script src="/assets/site.js"></script>${page==='tcad'?'<script src="/assets/tcad.js"></script>':''}</body></html>`;
 }
 export function renderHome(d,lang) {
   const intro=`<p><span class="anchor" id="about-me"></span></p>${d.about.map(p=>`<p>${rich(p,lang)}</p>`).join('')}`;
@@ -50,4 +58,10 @@ export function renderHome(d,lang) {
 export function renderCV(d,lang) {
   const l=labels[lang];
   return doc(d,lang,'cv',`<main id="main-content" class="cv-sheet"><header class="cv-header"><p>${l.cv}</p><h1>${t(d.name,lang)} <span>${t(d.name,lang==='en'?'zh':'en')}</span></h1><p>${t(d.role,lang)} · ${t(d.affiliation,lang)}</p><p><a href="mailto:${d.email}">${d.email}</a> · <a href="${d.github}">GitHub</a></p><div class="cv-actions"><button type="button" onclick="window.print()">${l.print}</button><a href="${base(lang)}">${l.back}</a></div></header><section><h2>${l.about}</h2>${d.about.map(p=>`<p>${rich(p,lang)}</p>`).join('')}</section><section><h2>${l.education}</h2>${education(d,lang)}</section><section><h2>${l.publications}</h2><ol>${d.publications.map(p=>`<li><h3><a href="${p.doi}">${escape(p.title)}</a></h3><p>${authors(p)}</p>${publicationLinks(p,lang)}<p>${t(p.contribution,lang)}</p></li>`).join('')}</ol></section><section><h2>${l.experience}</h2>${d.projects.map(p=>`<article><h3>${projectTitle(p,lang)} · ${p.period}</h3><p>${t(p.description,lang)}</p><p>${t(p.scope,lang)}</p>${projectLink(p,lang)}</article>`).join('')}</section><section><h2>${l.awards}</h2>${awards(d,lang)}</section></main>`);
+}
+
+export function renderTcad(d,lang,article) {
+  const sections=lang==='en'?[['harness','Workflow'],['decisions','Decisions'],['evidence','Evidence'],['receipts','Traceability'],['roles','Roles']]:[['harness','研究流程'],['decisions','关键决策'],['evidence','仿真证据'],['receipts','证据追溯'],['roles','职责分工']];
+  const navigation=`<nav class="project-section-nav" aria-label="${lang==='en'?'Project sections':'项目介绍目录'}">${sections.map(([id,label])=>`<a href="#${id}">${label}</a>`).join('')}</nav>`;
+  return doc(d,lang,'tcad',`<main id="main-content" class="project-detail"><p class="project-back"><a href="${base(lang)}#-experience">← ${labels[lang].back}</a></p>${navigation}<article class="practice-detail-article" id="practice-article">${article}</article><p class="project-back"><a href="${base(lang)}#-experience">← ${labels[lang].back}</a></p></main>`);
 }

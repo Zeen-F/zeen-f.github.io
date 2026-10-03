@@ -162,7 +162,7 @@
     },
     {
       "id": "tcad",
-      "url": "https://claudecode.christmas/research-practice/codex-tcad-harness",
+      "path": "research-practice/codex-tcad-harness/",
       "period": "2026",
       "title": {
         "zh": "Codex × TCAD · 器件仿真实践",
