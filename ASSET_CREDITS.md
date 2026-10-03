@@ -5,7 +5,8 @@
 - `assets/images/in2o3.webp`: device-structure panel from Xu et al., *Micromachines* 2026, 17, 567. https://doi.org/10.3390/mi17050567 — CC BY 4.0; resized from the existing site's public figure.
 - `assets/images/ldo.webp`: team LDO schematic already selected for the existing public portfolio. Team design/simulation; no silicon-measurement claim. Not covered by the code license.
 - `assets/images/tcad.png`: device-structure illustration from the existing public TCAD research-training case. Not covered by the code license.
-- Local IBM Plex Sans and Source Serif 4 font files: their licenses are included in `assets/fonts/`.
-- Layout reference: WowPage by Yue Su and Weidong Tang (MIT); `LICENSE-WowPage` preserves its notice.
+- Theme CSS and JavaScript: [Koreyoshi01/Koreyoshi01.github.io](https://github.com/Koreyoshi01/Koreyoshi01.github.io), commit `84e6cc6e941a36b0092e288d4c1256caac6312dc`, adapted from AcadHomepage / Minimal Mistakes. Copyright (c) 2022 Yi Ren; MIT notice in `LICENSE-AcadHomepage`.
+- Font Awesome Free solid/brands fonts, distributed with the reference theme: fonts under SIL OFL 1.1, icons under CC BY 4.0, code under MIT. Original license notices are preserved in `assets/reference/main.css`. https://fontawesome.com/license/free
+- `assets/images/csu-emblem.png`: Central South University emblem, from the official school identity page https://www.csu.edu.cn/zjzn/xxbs/xh.htm . Used solely to identify the author's university; not covered by the software license.
 
 CC BY 4.0: https://creativecommons.org/licenses/by/4.0/

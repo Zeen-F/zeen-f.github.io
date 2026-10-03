@@ -1,0 +1,2 @@
+# Font files are vendored binary assets, including the legacy SVG font format.
+assets/fonts/* binary

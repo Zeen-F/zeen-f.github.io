@@ -26,12 +26,12 @@
   },
   "about": [
     {
-      "zh": "我是方泽恩，中南大学微电子科学与工程专业本科生。我关注器件特性如何影响电路行为，已有工作涉及忆阻器行为建模、半导体器件数值仿真，以及团队 LDO 设计与验证。",
-      "en": "I am Zeen Fang, an undergraduate in Microelectronics Science and Engineering at Central South University. I study how device characteristics shape circuit behavior, with work in memristor behavioral modeling, semiconductor-device simulation, and a team LDO design project."
+      "en": "Hi! I am **Zeen Fang** (Chinese: 方泽恩), an **undergraduate student** majoring in **Microelectronics Science and Engineering** at **Central South University**.",
+      "zh": "你好！我是**方泽恩**（Zeen Fang），目前就读于**中南大学微电子科学与工程专业**。"
     },
     {
-      "zh": "目前已获上海交通大学录取，正在准备研究生阶段的学习，并继续补足模拟集成电路基础。这里整理我的已发表论文、项目经历和学习实践。",
-      "en": "I have been admitted to Shanghai Jiao Tong University and am preparing for graduate study while strengthening my foundations in analog integrated circuits. This website collects my publications, project experience, and research practice."
+      "en": "I have been admitted to Shanghai Jiao Tong University and am preparing for graduate study. My current work connects device simulation and circuit modeling, while I continue to strengthen my foundations in analog integrated circuits.",
+      "zh": "我已获上海交通大学录取，正在准备研究生阶段的学习。目前的工作涉及器件仿真与电路建模，同时持续补足模拟集成电路基础。"
     }
   ],
   "interests": [
@@ -200,7 +200,8 @@
       "note": {
         "zh": "课程基础：半导体器件物理、电路理论、模拟与数字电子技术。",
         "en": "Coursework includes semiconductor device physics, circuit theory, and analog and digital electronics."
-      }
+      },
+      "logo": "/assets/images/csu-emblem.png"
     }
   ],
   "awards": [
@@ -247,6 +248,36 @@
         "zh": "第八届 · 非数学 A 类",
         "en": "8th edition · Non-Mathematics Category A"
       }
+    }
+  ],
+  "sidebarBio": {
+    "en": "Undergraduate at Central South University (CSU)",
+    "zh": "中南大学微电子科学与工程专业本科生"
+  },
+  "sidebarNote": {
+    "en": "Device simulation, circuit modeling, and learning analog IC design.",
+    "zh": "器件仿真、电路建模与模拟集成电路学习。"
+  },
+  "location": {
+    "en": "Changsha, China",
+    "zh": "中国 · 长沙"
+  },
+  "researchIntro": {
+    "en": "My work explores the connection between device behavior and circuit operation. My current interests and learning focus include:",
+    "zh": "我关注器件行为与电路工作方式之间的联系，目前的研究兴趣与学习重点包括："
+  },
+  "researchTopics": [
+    {
+      "en": "Semiconductor Device Simulation 🔬",
+      "zh": "半导体器件数值仿真 🔬"
+    },
+    {
+      "en": "Memristor Behavioral Modeling and Circuit Analysis ⚡",
+      "zh": "忆阻器行为建模与电路分析 ⚡"
+    },
+    {
+      "en": "Analog and Mixed-Signal Integrated Circuits 🔧",
+      "zh": "模拟与混合信号集成电路 🔧"
     }
   ]
 }

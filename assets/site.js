@@ -1,65 +1,47 @@
-/* All content and navigation remain available without JavaScript. */
+/* Accessibility additions only; the original theme owns navigation and layout. */
 (() => {
   "use strict";
 
-  function enhancePage() {
-    const controls = document.querySelector(".publication-tools");
-    const cards = document.querySelector(".publications-grid");
-    const list = document.querySelector(".publication-list");
+  function enhanceNavigation() {
+    const nav = document.getElementById("site-nav");
+    if (!nav) return;
+    const button = nav.querySelector("button");
+    const menu = nav.querySelector(".hidden-links");
+    if (!button || !menu) return;
 
-    if (controls && cards && list) {
-      const buttons = Array.from(controls.querySelectorAll("button[data-view]"));
-      const setView = (view) => {
-        const showList = view === "list";
-        cards.hidden = showList;
-        list.hidden = !showList;
-        buttons.forEach((button) => {
-          button.setAttribute("aria-pressed", String(button.dataset.view === view));
-        });
-      };
-
-      buttons.forEach((button) => {
-        button.addEventListener("click", () => setView(button.dataset.view));
-      });
-      setView("cards");
-      controls.hidden = false;
-      document.documentElement.classList.add("has-js");
+    if (!menu.id) menu.id = "navigation-overflow";
+    button.setAttribute("aria-controls", menu.id);
+    if (!button.hasAttribute("aria-label")) {
+      button.setAttribute("aria-label", document.documentElement.lang.startsWith("zh")
+        ? "更多导航" : "More navigation");
     }
 
-    if (!("IntersectionObserver" in window)) return;
+    const syncExpanded = () => {
+      const isOpen = !button.classList.contains("hidden") &&
+        !menu.classList.contains("hidden");
+      button.setAttribute("aria-expanded", String(isOpen));
+    };
+    syncExpanded();
 
-    const navLinks = Array.from(document.querySelectorAll(".main-nav a[href]"))
-      .filter((link) => {
-        const target = new URL(link.href, window.location.href);
-        return target.origin === window.location.origin &&
-          target.pathname === window.location.pathname && target.hash &&
-          document.getElementById(decodeURIComponent(target.hash.slice(1)));
-      });
-    if (!navLinks.length) return;
+    // The theme changes these classes on click and resize. Observe those changes
+    // instead of duplicating its width calculations or moving any links.
+    const observer = new MutationObserver(syncExpanded);
+    observer.observe(menu, { attributes: true, attributeFilter: ["class"] });
+    observer.observe(button, { attributes: true, attributeFilter: ["class"] });
 
-    const linksBySection = new Map(navLinks.map((link) => [
-      document.getElementById(decodeURIComponent(new URL(link.href).hash.slice(1))), link
-    ]));
-    const visibleSections = new Set();
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) visibleSections.add(entry.target);
-        else visibleSections.delete(entry.target);
-      });
-      const currentSection = Array.from(linksBySection.keys())
-        .find((section) => visibleSections.has(section));
-      if (!currentSection) return;
-
-      navLinks.forEach((link) => link.removeAttribute("aria-current"));
-      linksBySection.get(currentSection).setAttribute("aria-current", "location");
-    }, { rootMargin: "-120px 0px -55% 0px", threshold: 0 });
-
-    linksBySection.forEach((link, section) => observer.observe(section));
+    nav.addEventListener("keydown", (event) => {
+      if (event.key !== "Escape" || menu.classList.contains("hidden")) return;
+      event.preventDefault();
+      menu.classList.add("hidden");
+      button.classList.remove("close");
+      syncExpanded();
+      button.focus();
+    });
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", enhancePage, { once: true });
+    document.addEventListener("DOMContentLoaded", enhanceNavigation, { once: true });
   } else {
-    enhancePage();
+    enhanceNavigation();
   }
 })();
