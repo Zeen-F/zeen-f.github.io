@@ -96,13 +96,33 @@
         "zh": "个人工作：建模、仿真、分析与写作。结果来自行为级仿真。",
         "en": "My contribution: modeling, simulation, analysis, and writing. Results are from behavioral simulation."
       },
-      "image": "/assets/images/memristor.webp",
+      "image": "/assets/posters/memristor-read-write-interface.webp",
       "imageAlt": {
-        "zh": "忆阻器读写工作窗口与仿真结果",
-        "en": "Read–write operating windows and simulation results for the memristor study"
+        "en": "Paper overview poster: memristor models, isolated two-phase read–write interface, and neural inference",
+        "zh": "论文概览海报：忆阻器模型、两相读写分离接口与神经网络推理"
       },
       "doi": "https://doi.org/10.3390/electronics15112333",
-      "code": "https://github.com/Zeen-F/Memristor-Based-Read-Write-Interface-Design-for-Neural-Networks"
+      "code": "https://github.com/Zeen-F/Memristor-Based-Read-Write-Interface-Design-for-Neural-Networks",
+      "path": "research/memristor-read-write-interface/",
+      "poster": {
+        "image": "/assets/posters/memristor-read-write-interface.png",
+        "width": 1536,
+        "height": 1024,
+        "caption": {
+          "zh": "论文读写接口概览：通过两相互斥控制分离写入与读取，并将软件训练权重映射为差分电导。图示基于解析与仿真研究。",
+          "en": "Overview of the paper’s read–write interface: mutually exclusive phases separate programming and sensing, with software-trained weights mapped to differential conductances. The illustration summarizes analytical and simulation research."
+        },
+        "notes": [
+          {
+            "zh": "Reset 30.94%、Set 96.08% 的节能对应行为级单器件周期能量，基线为整个 40 ms 周期持续施加写偏置。",
+            "en": "Reset 30.94% and Set 96.08% energy savings refer to behavioral single-device cycle energy, relative to a continuous-write-bias baseline over the full 40 ms cycle."
+          },
+          {
+            "zh": "91.8% → 90.6% 为静态 D2D 5%、C2C 3%、100 次 Monte Carlo 条件下从软件到电导映射的准确率变化；下降 1.2 个百分点。该结果未包含额外 RTN、状态松弛与线阻，亦非芯片实测。",
+            "en": "The 91.8% → 90.6% accuracy change is for static D2D 5% and C2C 3% variability over 100 Monte Carlo trials: a 1.2 percentage-point decrease. It excludes additional RTN, state relaxation, and line resistance and is not a silicon measurement."
+          }
+        ]
+      }
     },
     {
       "id": "in2o3-tft",
@@ -126,12 +146,32 @@
         "zh": "个人工作：验证、数据整理及文稿审阅。器件性能为数值仿真结果。",
         "en": "My contribution: validation, data curation, and manuscript review. Device performance is based on numerical simulation."
       },
-      "image": "/assets/images/in2o3.webp",
+      "image": "/assets/posters/in2o3-tft-scaling.webp",
       "imageAlt": {
-        "zh": "顶栅 In₂O₃ 薄膜晶体管数值研究的器件结构",
-        "en": "Device structure used in the top-gate In₂O₃ TFT numerical study"
+        "en": "Paper overview poster: top-gate In₂O₃ TFT scaling, short-channel effects, and intrinsic RF trends",
+        "zh": "论文概览海报：顶栅 In₂O₃ TFT 缩栅、短沟道效应与本征射频趋势"
       },
-      "doi": "https://doi.org/10.3390/mi17050567"
+      "doi": "https://doi.org/10.3390/mi17050567",
+      "path": "research/in2o3-tft-scaling/",
+      "poster": {
+        "image": "/assets/posters/in2o3-tft-scaling.png",
+        "width": 1536,
+        "height": 1024,
+        "caption": {
+          "zh": "固定源漏间距下顶栅 In₂O₃ TFT 缩栅研究的二维 TCAD 概览，展示静电控制与本征射频性能的权衡。结构不按比例绘制。",
+          "en": "Two-dimensional TCAD overview of gate-length scaling in top-gate In₂O₃ TFTs at fixed source–drain spacing, highlighting the trade-off between electrostatic control and intrinsic RF performance. Geometry is not to scale."
+        },
+        "notes": [
+          {
+            "zh": "固定源漏间距为 1 μm，居中栅长为 20–700 nm。校准主要参照既有背栅实验数据。",
+            "en": "Source–drain spacing is fixed at 1 μm, with a centered gate length of 20–700 nm. Calibration primarily references published back-gate experimental data."
+          },
+          {
+            "zh": "fT = 124.32 GHz、fmax = 157.64 GHz 对应栅长 20 nm、VDS = 6 V、VGS 取对应 gm,max 偏置，为简化 TCAD 小信号模型的本征估计，并非器件实测。",
+            "en": "The reported fT = 124.32 GHz and fmax = 157.64 GHz are intrinsic estimates from a simplified TCAD small-signal model at a 20 nm gate length, VDS = 6 V, and VGS at the corresponding gm,max bias; they are not device measurements."
+          }
+        ]
+      }
     }
   ],
   "projects": [

@@ -6,7 +6,7 @@
 
 ## 更新内容
 
-编辑 `data/profile.json`，修改对应的 `zh` / `en` 文本。主页和简历共用这份数据。图片放在 `assets/images/`。
+编辑 `data/profile.json`，修改对应的 `zh` / `en` 文本。主页、简历和论文详情共用这份数据。普通图片放在 `assets/images/`，论文海报放在 `assets/posters/`，网站图标放在 `assets/icons/`。
 
 - 英文主页：`/`
 - 中文主页：`/zh/`
@@ -14,10 +14,13 @@
 - 中文简历：`/zh/cv/`
 - 英文 TCAD 项目介绍：`/research-practice/codex-tcad-harness/`
 - 中文 TCAD 项目介绍：`/zh/research-practice/codex-tcad-harness/`
+- 忆阻器论文海报：`/research/memristor-read-write-interface/`
+- In₂O₃ TFT 论文海报：`/research/in2o3-tft-scaling/`
+- 论文海报中文页面：在相应路径前加 `/zh`
 
 TCAD 详情正文分别保存在 `data/tcad.en.html` 和 `data/tcad.zh.html`，原始图放在 `assets/images/tcad-detail/`。主页、简历及详情页均使用本站链接；详情页语言切换保留当前项目。
 
-简历页支持打印或另存为 PDF；论文缩略图支持悬停放大和点击查看。
+简历页支持打印或另存为 PDF；论文缩略图支持悬停放大和点击查看。每篇论文的 `[poster]` / `[海报]` 入口指向对应的本站详情页，提供完整 PNG 查看和下载。原始海报以 PNG 保留，首页使用较小的 WebP 预览；概览图说明与研究条件在中英文详情页同步展示。
 
 ## 本地预览与检查
 
@@ -33,7 +36,7 @@ npm run dev
 npm test
 ```
 
-检查六个双语页面、站内链接、图片路径、重复锚点、项目语言切换和原始 TCAD 章节完整性。
+检查十个双语页面、站内链接、图片路径、重复锚点、论文与项目语言切换、海报下载、网站图标和原始 TCAD 章节完整性。
 
 ## 发布
 
@@ -49,6 +52,7 @@ npm test
 - `assets/reference/main.min.js`：参考仓库的导航、侧栏、平滑滚动和 Magnific Popup 代码。
 - `assets/site.css` / `assets/site.js`：键盘可访问性、中英入口和附加简历页支持。
 - `assets/tcad.css`：与主页字体及色彩保持一致的响应式项目详情样式。
+- `assets/publication.css`：与主页主题一致的论文海报详情样式。
 - `scripts/template.mjs`：与参考主题匹配的页面结构，读取本人的资料。
 
 上游许可保存在 `LICENSE-AcadHomepage`。不包含参考站作者的个人信息、论文、证件、微信码、Google Analytics 或 Google Scholar 爬取配置。

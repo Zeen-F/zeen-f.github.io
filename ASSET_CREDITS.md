@@ -1,6 +1,9 @@
 # Asset credits
 
 - `assets/images/profile.webp`: Zeen Fang's portrait, reused from the existing personal academic website. Not covered by the code license.
+- `assets/icons/`: resized versions of the user-supplied anime illustration, selected by the site owner as the website icon. The illustration is not covered by the code license.
+- `assets/posters/memristor-read-write-interface.png`: the author's selected AI-assisted overview of Fang et al., *Electronics* 2026, 15, 2333. https://doi.org/10.3390/electronics15112333 — original 1536 × 1024 PNG preserved; the WebP companion is a reduced preview. The poster summarizes analytical and behavioral simulation research and does not depict new measurements. Not covered by the code license.
+- `assets/posters/in2o3-tft-scaling.png`: the author's selected AI-assisted overview of Xu et al., *Micromachines* 2026, 17, 567. https://doi.org/10.3390/mi17050567 — original 1536 × 1024 PNG preserved; the WebP companion is a reduced preview. Geometry is schematic; the intrinsic RF values are TCAD estimates, not device measurements. Not covered by the code license.
 - `assets/images/memristor.webp`: figure from Fang et al., *Electronics* 2026, 15, 2333. https://doi.org/10.3390/electronics15112333 — CC BY 4.0; resized from the existing site's public figure.
 - `assets/images/in2o3.webp`: device-structure panel from Xu et al., *Micromachines* 2026, 17, 567. https://doi.org/10.3390/mi17050567 — CC BY 4.0; resized from the existing site's public figure.
 - `assets/images/ldo.webp`: team LDO schematic already selected for the existing public portfolio. Team design/simulation; no silicon-measurement claim. Not covered by the code license.
