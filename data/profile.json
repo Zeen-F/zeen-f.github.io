@@ -1,0 +1,252 @@
+{
+  "siteUrl": "https://zeen-f.github.io",
+  "updated": "2026-10-04",
+  "name": {
+    "zh": "方泽恩",
+    "en": "Zeen Fang"
+  },
+  "role": {
+    "zh": "微电子科学与工程 · 本科生",
+    "en": "Microelectronics Science & Engineering"
+  },
+  "affiliation": {
+    "zh": "中南大学",
+    "en": "Central South University"
+  },
+  "status": {
+    "zh": "研究生入学准备中",
+    "en": "Preparing for graduate study"
+  },
+  "email": "8203231006@csu.edu.cn",
+  "github": "https://github.com/Zeen-F",
+  "avatar": "/assets/images/profile.webp",
+  "description": {
+    "zh": "方泽恩的学术主页：器件仿真、电路建模、模拟集成电路学习与研究。",
+    "en": "Academic homepage of Zeen Fang: device simulation, circuit modeling, and analog integrated circuits."
+  },
+  "about": [
+    {
+      "zh": "我是方泽恩，中南大学微电子科学与工程专业本科生。我关注器件特性如何影响电路行为，已有工作涉及忆阻器行为建模、半导体器件数值仿真，以及团队 LDO 设计与验证。",
+      "en": "I am Zeen Fang, an undergraduate in Microelectronics Science and Engineering at Central South University. I study how device characteristics shape circuit behavior, with work in memristor behavioral modeling, semiconductor-device simulation, and a team LDO design project."
+    },
+    {
+      "zh": "目前已获上海交通大学录取，正在准备研究生阶段的学习，并继续补足模拟集成电路基础。这里整理我的已发表论文、项目经历和学习实践。",
+      "en": "I have been admitted to Shanghai Jiao Tong University and am preparing for graduate study while strengthening my foundations in analog integrated circuits. This website collects my publications, project experience, and research practice."
+    }
+  ],
+  "interests": [
+    {
+      "zh": "器件仿真",
+      "en": "Device simulation"
+    },
+    {
+      "zh": "电路建模",
+      "en": "Circuit modeling"
+    },
+    {
+      "zh": "模拟集成电路",
+      "en": "Analog ICs"
+    }
+  ],
+  "news": [
+    {
+      "date": "2026.08",
+      "text": {
+        "zh": "团队获第十届全国大学生集成电路创新创业大赛曾益慧创赛道全国总决赛二等奖。",
+        "en": "Our team received Second Prize in the national final of the 10th National College Student IC Innovation and Entrepreneurship Competition, Zengyi Huichuang track."
+      }
+    },
+    {
+      "date": "2026.05",
+      "text": {
+        "zh": "第一作者论文：忆阻器读写接口研究发表于 Electronics。",
+        "en": "My first-author study on memristor read–write interfaces was published in Electronics."
+      },
+      "url": "https://doi.org/10.3390/electronics15112333"
+    },
+    {
+      "date": "2026.05",
+      "text": {
+        "zh": "参与的 In₂O₃ 薄膜晶体管数值研究发表于 Micromachines。",
+        "en": "Our numerical study of In₂O₃ thin-film transistors was published in Micromachines."
+      },
+      "url": "https://doi.org/10.3390/mi17050567"
+    }
+  ],
+  "publications": [
+    {
+      "id": "memristor-interface",
+      "title": "Memristor-Based Read–Write Interface Design for Neural Networks: A Comparative Study of Linear-Drift and VTEAM Models",
+      "authors": [
+        "Zeen Fang",
+        "Mingyang Zhu",
+        "Hanbo Xu",
+        "Lei Zhang"
+      ],
+      "venue": "Electronics 15(11), 2333 · 2026",
+      "role": {
+        "zh": "第一作者",
+        "en": "First author"
+      },
+      "description": {
+        "zh": "从 VTEAM 状态方程推导读写约束，比较线性漂移与 VTEAM 模型，并通过行为级仿真评估读写分离接口。",
+        "en": "Derives read–write constraints from the VTEAM state equation and compares linear-drift and VTEAM models through behavioral simulation of a read–write separation interface."
+      },
+      "contribution": {
+        "zh": "个人工作：建模、仿真、分析与写作。结果来自行为级仿真。",
+        "en": "My contribution: modeling, simulation, analysis, and writing. Results are from behavioral simulation."
+      },
+      "image": "/assets/images/memristor.webp",
+      "imageAlt": {
+        "zh": "忆阻器读写工作窗口与仿真结果",
+        "en": "Read–write operating windows and simulation results for the memristor study"
+      },
+      "doi": "https://doi.org/10.3390/electronics15112333",
+      "code": "https://github.com/Zeen-F/Memristor-Based-Read-Write-Interface-Design-for-Neural-Networks"
+    },
+    {
+      "id": "in2o3-tft",
+      "title": "Numerical Investigation of Short-Channel Effects and RF Performance in Top-Gate In₂O₃ Thin-Film Transistors",
+      "authors": [
+        "Hanbo Xu",
+        "Mingyang Zhu",
+        "Zeen Fang",
+        "Lei Zhang"
+      ],
+      "venue": "Micromachines 17(5), 567 · 2026",
+      "role": {
+        "zh": "第三作者",
+        "en": "Third author"
+      },
+      "description": {
+        "zh": "通过二维数值仿真，研究顶栅 In₂O₃ 薄膜晶体管的短沟道效应及直流、射频性能随尺寸的变化。",
+        "en": "A two-dimensional numerical investigation of short-channel effects and the DC/RF scaling of top-gate In₂O₃ thin-film transistors."
+      },
+      "contribution": {
+        "zh": "个人工作：验证、数据整理及文稿审阅。器件性能为数值仿真结果。",
+        "en": "My contribution: validation, data curation, and manuscript review. Device performance is based on numerical simulation."
+      },
+      "image": "/assets/images/in2o3.webp",
+      "imageAlt": {
+        "zh": "顶栅 In₂O₃ 薄膜晶体管数值研究的器件结构",
+        "en": "Device structure used in the top-gate In₂O₃ TFT numerical study"
+      },
+      "doi": "https://doi.org/10.3390/mi17050567"
+    }
+  ],
+  "projects": [
+    {
+      "id": "ldo",
+      "period": "2026",
+      "title": {
+        "zh": "LDO 设计与验证 · 集创赛团队项目",
+        "en": "LDO design & verification · Team competition project"
+      },
+      "category": {
+        "zh": "模拟集成电路 / 团队项目",
+        "en": "Analog ICs / Team project"
+      },
+      "description": {
+        "zh": "参与 1.8 V CMOS LDO 的电路分析、仿真、版图与后仿真评估，以及区域赛半分立 LDO 硬件调试和全国赛自动化测试准备。",
+        "en": "Contributed to circuit analysis, simulation, layout and post-layout evaluation of a 1.8 V CMOS LDO, alongside regional-stage semi-discrete hardware debugging and national-stage automated-test preparation."
+      },
+      "scope": {
+        "zh": "个人承担团队中的部分任务；CMOS 部分为设计与仿真，半分立硬件为独立赛段，自动化测试工作处于准备阶段。",
+        "en": "Selected tasks within a team. The CMOS work is design and simulation; semi-discrete hardware belongs to a separate competition stage; automated testing was preparation work."
+      },
+      "image": "/assets/images/ldo.webp",
+      "imageAlt": {
+        "zh": "团队 1.8 V CMOS LDO 的晶体管级电路原理图",
+        "en": "Transistor-level schematic of the team 1.8 V CMOS LDO"
+      }
+    },
+    {
+      "id": "tcad",
+      "period": "2026",
+      "title": {
+        "zh": "Codex × TCAD · 器件仿真实践",
+        "en": "Codex × TCAD · Device-simulation practice"
+      },
+      "category": {
+        "zh": "器件仿真 / 科研训练",
+        "en": "Device simulation / Research training"
+      },
+      "description": {
+        "zh": "围绕 H-diamond FET 器件仿真实践，整理文献假设、仿真输入、求解器输出、数据处理和物理检查，探索 AI 辅助器件仿真的工作方式。",
+        "en": "A research-training case on H-diamond FETs, connecting literature assumptions, simulation inputs, solver outputs, data processing, and physical checks in an AI-assisted device-simulation workflow."
+      },
+      "scope": {
+        "zh": "科研训练与数值仿真实践；AI 用于辅助执行与整理，物理判断和结果核查仍需人工完成。",
+        "en": "Research training and numerical simulation. AI assists execution and organization; physical interpretation and result verification remain human responsibilities."
+      },
+      "image": "/assets/images/tcad.png",
+      "imageAlt": {
+        "zh": "TCAD 科研训练中的 H-diamond FET 器件结构",
+        "en": "H-diamond FET device structure from the TCAD research-training case"
+      }
+    }
+  ],
+  "education": [
+    {
+      "period": "2023.09 — 2027.06",
+      "school": {
+        "zh": "中南大学",
+        "en": "Central South University"
+      },
+      "degree": {
+        "zh": "微电子科学与工程 · 工学学士（预计 2027 年毕业）",
+        "en": "B.Eng. in Microelectronics Science and Engineering (expected June 2027)"
+      },
+      "note": {
+        "zh": "课程基础：半导体器件物理、电路理论、模拟与数字电子技术。",
+        "en": "Research training includes semiconductor device physics, circuit theory, and analog and digital electronics."
+      }
+    }
+  ],
+  "awards": [
+    {
+      "year": "2026",
+      "title": {
+        "zh": "全国大学生集成电路创新创业大赛 · 全国总决赛二等奖",
+        "en": "National IC Innovation Competition · Second Prize, National Final"
+      },
+      "note": {
+        "zh": "第十届 · 曾益慧创赛道 · 团队奖项",
+        "en": "10th edition · Zengyi Huichuang track · Team award"
+      }
+    },
+    {
+      "year": "2026",
+      "title": {
+        "zh": "美国大学生数学建模竞赛 · Honorable Mention",
+        "en": "Mathematical Contest in Modeling · Honorable Mention"
+      },
+      "note": {
+        "zh": "COMAP · 团队奖项",
+        "en": "COMAP · Team award"
+      }
+    },
+    {
+      "year": "2024",
+      "title": {
+        "zh": "全国大学生数学竞赛 · 湖南赛区一等奖",
+        "en": "Chinese Mathematics Competition · First Prize, Hunan Division"
+      },
+      "note": {
+        "zh": "第十六届 · 非数学 A 类",
+        "en": "16th edition · Non-Mathematics Category A"
+      }
+    },
+    {
+      "year": "2024",
+      "title": {
+        "zh": "湖南省大学生数学竞赛 · 一等奖",
+        "en": "Hunan Mathematics Competition · First Prize"
+      },
+      "note": {
+        "zh": "第八届 · 非数学 A 类",
+        "en": "8th edition · Non-Mathematics Category A"
+      }
+    }
+  ]
+}

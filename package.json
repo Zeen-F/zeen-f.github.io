@@ -1,0 +1,12 @@
+{
+  "name": "zeen-fang-github-homepage",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "npm run build && node scripts/check.mjs",
+    "dev": "npm run build && node scripts/serve.mjs"
+  }
+}
