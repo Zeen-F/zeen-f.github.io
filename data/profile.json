@@ -219,12 +219,89 @@
     {
       "year": "2026",
       "title": {
+        "zh": "全国大学生集成电路创新创业大赛 · 华中赛区决赛一等奖",
+        "en": "National IC Innovation Competition · First Prize, Central China Regional Final"
+      },
+      "note": {
+        "zh": "第十届 · 曾益慧创赛道 · 团队奖项",
+        "en": "10th edition · Zengyi Huichuang track · Team award"
+      }
+    },
+    {
+      "year": "2026",
+      "title": {
+        "zh": "中国机器人及人工智能大赛 · 全国总决赛优秀奖",
+        "en": "China Robot and Artificial Intelligence Competition · Excellence Award, National Final"
+      },
+      "note": {
+        "zh": "第二十八届 · 仿人机器人短跑 · 团队奖项",
+        "en": "28th edition · Humanoid Robot Sprint · Team award"
+      }
+    },
+    {
+      "year": "2026",
+      "title": {
+        "zh": "中国机器人及人工智能大赛 · 湖南赛区二等奖",
+        "en": "China Robot and Artificial Intelligence Competition · Second Prize, Hunan Division"
+      },
+      "note": {
+        "zh": "第二十八届 · 仿人机器人短跑 · 团队奖项",
+        "en": "28th edition · Humanoid Robot Sprint · Team award"
+      }
+    },
+    {
+      "year": "2026",
+      "title": {
         "zh": "美国大学生数学建模竞赛 · Honorable Mention",
         "en": "Mathematical Contest in Modeling · Honorable Mention"
       },
       "note": {
         "zh": "COMAP · 团队奖项",
         "en": "COMAP · Team award"
+      }
+    },
+    {
+      "year": "2026",
+      "title": {
+        "zh": "中南大学足协杯 · 甲级季军",
+        "en": "CSU Football Association Cup · Third Place, Division A"
+      },
+      "note": {
+        "zh": "机电工程学院足球队 · 学院团队荣誉",
+        "en": "College of Mechanical and Electrical Engineering football team · College team honor"
+      }
+    },
+    {
+      "year": "2025",
+      "title": {
+        "zh": "中南大学数学竞赛 · 三等奖",
+        "en": "CSU Mathematics Competition · Third Prize"
+      },
+      "note": {
+        "zh": "非数学类 · 个人奖项",
+        "en": "Non-Mathematics Category · Individual award"
+      }
+    },
+    {
+      "year": "2025",
+      "title": {
+        "zh": "中南大学足协杯 · 甲级／甲组第五名",
+        "en": "CSU Football Association Cup · Fifth Place, Division A"
+      },
+      "note": {
+        "zh": "机电工程学院队 · 5 月足协杯证书及 11 月第十届综合运动会足协杯证书",
+        "en": "College team · May Cup certificate and November certificate for the 10th CSU Sports Games Cup"
+      }
+    },
+    {
+      "year": "2024–2025",
+      "title": {
+        "zh": "中南大学机电工程学院 · 优秀学生",
+        "en": "Outstanding Student · CSU College of Mechanical and Electrical Engineering"
+      },
+      "note": {
+        "zh": "2024—2025 学年 · 院级荣誉",
+        "en": "2024–2025 academic year · College-level honor"
       }
     },
     {
@@ -247,6 +324,39 @@
       "note": {
         "zh": "第八届 · 非数学 A 类",
         "en": "8th edition · Non-Mathematics Category A"
+      }
+    },
+    {
+      "year": "2024",
+      "title": {
+        "zh": "豪鹏国际奖学金 · 优秀学生奖",
+        "en": "Highpower International Scholarship · Excellent Student Award"
+      },
+      "note": {
+        "zh": "2024 年度 · 中南大学与豪鹏国际颁发",
+        "en": "2024 award · Central South University and Highpower International"
+      }
+    },
+    {
+      "year": "2023–2024",
+      "title": {
+        "zh": "中南大学 · 优秀学生",
+        "en": "Outstanding Student · Central South University"
+      },
+      "note": {
+        "zh": "2023—2024 学年 · 校级荣誉",
+        "en": "2023–2024 academic year · University-level honor"
+      }
+    },
+    {
+      "year": "2023–2024",
+      "title": {
+        "zh": "中南大学学年奖学金 · 二等奖",
+        "en": "CSU Academic-Year Scholarship · Second Class"
+      },
+      "note": {
+        "zh": "2023—2024 学年 · 个人奖项",
+        "en": "2023–2024 academic year · Individual award"
       }
     }
   ],
