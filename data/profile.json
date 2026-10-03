@@ -154,10 +154,10 @@
         "zh": "个人承担团队中的部分任务；CMOS 部分为设计与仿真，半分立硬件为独立赛段，自动化测试工作处于准备阶段。",
         "en": "Selected tasks within a team. The CMOS work is design and simulation; semi-discrete hardware belongs to a separate competition stage; automated testing was preparation work."
       },
-      "image": "/assets/images/ldo.webp",
+      "image": "/assets/images/ldo-concept.png",
       "imageAlt": {
-        "zh": "团队 1.8 V CMOS LDO 的晶体管级电路原理图",
-        "en": "Transistor-level schematic of the team 1.8 V CMOS LDO"
+        "zh": "LDO 集创赛三阶段概念图：初赛 CMOS 设计与仿真、分赛区半分立 LDO、全国总决赛自动化测试准备。AI 生成的概念示意图。",
+        "en": "Three-stage LDO competition concept: preliminary CMOS design and simulation, regional semi-discrete LDO, and national-final automated-test preparation. AI-generated conceptual illustration."
       }
     },
     {
