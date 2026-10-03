@@ -224,6 +224,24 @@
       "imageAlt": {
         "zh": "TCAD 科研训练中的 H-diamond FET 器件结构",
         "en": "H-diamond FET device structure from the TCAD research-training case"
+      },
+      "poster": {
+        "image": "/assets/posters/codex-tcad-harness.png",
+        "preview": "/assets/posters/codex-tcad-harness.webp",
+        "width": 1536,
+        "height": 1024,
+        "title": {
+          "zh": "Codex × TCAD：AI 辅助项目概览",
+          "en": "Codex × TCAD: AI-assisted project overview"
+        },
+        "alt": {
+          "zh": "Codex × TCAD 科研训练流程的 AI 辅助项目概览海报",
+          "en": "AI-assisted project overview poster of the Codex × TCAD research-training workflow"
+        },
+        "caption": {
+          "zh": "AI 辅助制作的项目概览海报。原始 TCAD 仿真证据、提取方法与结果边界完整保留在下文；海报内容不代表器件实测结果。",
+          "en": "AI-assisted project overview poster. The original TCAD simulation evidence, extraction methods, and limits of the results are preserved below; the poster does not represent device measurements."
+        }
       }
     }
   ],
