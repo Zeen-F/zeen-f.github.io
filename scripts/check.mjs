@@ -2,10 +2,12 @@ import {readFile,access} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const root=new URL('../dist/',import.meta.url);
 const data=JSON.parse(await readFile(new URL('../data/profile.json',import.meta.url),'utf8'));
+const software=JSON.parse(await readFile(new URL('../data/software.json',import.meta.url),'utf8'));
+const sitemap=await readFile(new URL('sitemap.xml',root),'utf8');
 const siteUrl='https://zeen-f.github.io';
 const projectPath='research-practice/codex-tcad-harness/';
 const tcadPoster=data.projects.find(p=>p.id==='tcad').poster;
-const pages=['index.html','zh/index.html','cv/index.html','zh/cv/index.html',`${projectPath}index.html`,`zh/${projectPath}index.html`,...data.publications.flatMap(p=>[`${p.path}index.html`,`zh/${p.path}index.html`])];
+const pages=['index.html','zh/index.html','cv/index.html','zh/cv/index.html',`${projectPath}index.html`,`zh/${projectPath}index.html`,...[...data.publications, ...software].flatMap(p=>[`${p.path}index.html`,`zh/${p.path}index.html`])];
 let links=0;
 for(const page of pages) {
   const html=await readFile(new URL(page,root),'utf8');
@@ -18,7 +20,26 @@ for(const page of pages) {
   assert.ok(html.includes(`<link rel="canonical" href="${siteUrl}${pathname}">`));
   assert.ok(html.includes('href="/assets/icons/favicon-32.png"'));
   assert.doesNotMatch(html,/assets\/favicon\.svg/,'The old ZF icon must no longer be referenced');
-  if(publication) {
+  const guide=software.find(project=>page.includes(project.path));
+  if (guide) {
+    const other='/'+(chinese?'':'zh/')+guide.path;
+    assert.equal((html.match(/<h1[ >]/g)||[]).length,1);
+    assert.ok(html.includes('class="language-switch" href="'+other+'"'));
+    assert.ok(html.includes('href="'+guide.repo+'/releases"'));
+    assert.ok(html.includes('href="'+guide.repo+'/releases/tag/'+guide.release+'"'));
+    assert.ok(html.includes('href="/assets/software/rc-filter-handout.pdf" download'));
+    assert.ok(html.includes('href="/'+(chinese?'zh/':'')+guide.related.path+'"'));
+    assert.ok(sitemap.includes('<loc>'+siteUrl+pathname+'</loc>'));
+    assert.equal((html.match(/class="software-points"/g)||[]).length,guide.steps.length);
+    assert.equal((html.match(/<img /g)||[]).length,guide.steps.length);
+    for (const step of guide.steps) {
+      const src='/assets/software/'+guide.id+'/'+step.id+'.webp';
+      assert.ok(html.includes('src="'+src+'"') && html.includes('href="'+src+'"'));
+      assert.ok(html.includes('href="#'+step.id+'"'));
+      assert.equal(step.points.length,3);
+      assert.ok(step.points.every(point=>point.en && point.zh));
+    }
+  } else if(publication) {
     const p=publication;
     assert.equal((html.match(/<h1[ >]/g)||[]).length,1);
     assert.ok(html.includes(`class="language-switch" href="/${chinese?'':'zh/'}${p.path}"`),'Language switch must retain the paper route');
@@ -55,6 +76,11 @@ for(const page of pages) {
     assert.ok(projectLinks.every(([,attrs])=>!attrs.includes('target=')),'Internal project links must use the same tab');
     for(const p of data.publications) assert.ok(html.includes(`href="/${chinese?'zh/':''}${p.path}"`),'Each paper must link to its corresponding poster page');
     if(page==='index.html'||page==='zh/index.html') {
+      assert.ok(html.includes('id="software"'));
+      for (const project of software) {
+        assert.ok(html.includes('class="software-cover" href="/'+(chinese?'zh/':'')+project.path+'"'));
+        assert.ok(html.includes('src="/assets/software/'+project.id+'/cover.webp"'));
+      }
       assert.ok(html.includes(`src="${tcadPoster.preview}"`),'The homepage TCAD thumbnail must use the project poster');
       assert.ok(html.includes(`class="image-popup" href="${tcadPoster.image}"`),'The homepage TCAD thumbnail must open the original poster');
     }
@@ -74,4 +100,4 @@ for(const page of pages) {
 }
 for(const icon of ['favicon.ico','apple-touch-icon.png']) assert.deepEqual(await readFile(new URL(icon,root)),await readFile(new URL(`assets/icons/${icon}`,root)));
 assert.ok((await readFile(new URL('404.html',root),'utf8')).includes('href="/assets/icons/favicon-32.png"'));
-console.log(`Passed: ${pages.length} bilingual pages; ${links} local links/assets; native paper/project navigation and language switching; paper/project poster downloads; site icons; complete TCAD sections and original evidence figures; unique anchors.`);
+console.log(`Passed: ${pages.length} bilingual pages; ${links} local links/assets; native paper/project navigation and language switching; software guides with annotated screenshots; paper/project poster downloads; site icons; complete TCAD sections and original evidence figures; unique anchors.`);

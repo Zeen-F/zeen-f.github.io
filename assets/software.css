@@ -1,0 +1,98 @@
+/* Screenshot guides use the homepage type and link colours. */
+.software-list {
+  display: grid;
+  margin: .8rem 0 2rem;
+}
+.software-card {
+  display: grid;
+  grid-template-columns: minmax(140px, 29%) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 1.7rem);
+  align-items: center;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid #e4e6e6;
+}
+.software-card:first-child { padding-top: .35rem; }
+.software-card .software-cover {
+  display: block;
+  overflow: hidden;
+  border: 1px solid #d2d8d8;
+  border-radius: 5px;
+}
+.software-card .software-cover img {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0;
+}
+.software-card h2 { margin: 0 0 .35em; padding: 0; border: 0; font-size: 1.15em; }
+.software-card p { margin: .2em 0 .55em; }
+.software-card .software-actions { margin-bottom: 0; }
+.software-actions { display: flex; align-items: center; flex-wrap: wrap; gap: .45em 1.3em; }
+.software-actions a { font-weight: 600; }
+.software-guide {
+  max-width: 1160px;
+  margin: 2rem auto 4rem;
+  padding: 0 clamp(16px, 4vw, 48px);
+  line-height: 1.63;
+  color: #353d40;
+}
+.software-guide *, .software-guide *::before { box-sizing: border-box; }
+.software-guide a { text-underline-offset: .18em; }
+.software-guide a:focus-visible { outline: 2px solid #224b8d; outline-offset: 3px; }
+.software-back { margin: 0 0 1.25rem; font-size: .9em; }
+.software-hero { border-bottom: 1px solid #cdd6d5; padding-bottom: 1.6rem; }
+.software-hero h1 { margin: 0 0 .3em; font-size: clamp(2rem, 4.5vw, 3.2rem); line-height: 1.18; }
+.software-hero p { margin: .5em 0; max-width: 76ch; }
+.software-hero .software-actions { margin-top: 1em; font-size: .92em; }
+.software-layout { display: grid; grid-template-columns: 174px minmax(0, 1fr); gap: clamp(22px, 4.2vw, 55px); align-items: start; }
+.software-index { position: sticky; top: 4.2rem; padding-top: 1.6rem; font-size: .86em; }
+.software-index strong { display: block; margin-bottom: .65em; color: #293c36; }
+.software-index ul { margin: 0; padding: 0 0 0 .9em; border-left: 2px solid #d9e1df; list-style: none; }
+.software-index li { margin: .48em 0; line-height: 1.5; }
+.software-index a { text-decoration: none; }
+.software-index a:hover, .software-index a:focus-visible { text-decoration: underline; }
+.software-chapters { min-width: 0; }
+.software-guide section[id] { scroll-margin-top: 5rem; }
+.software-start, .software-step { min-width: 0; padding: 1.7rem 0 1.8rem; border-bottom: 1px solid #dce2e2; }
+.software-guide h2 { margin: 0 0 .8em; border: 0; padding: 0; font-size: clamp(1.3em, 2.2vw, 1.6em); line-height: 1.35; color: #273337; }
+.software-start ol { margin: 0; padding-left: 1.5em; }
+.software-start li + li { margin-top: .45em; }
+.software-version { margin: 1em 0 0; padding: .2em 0 .2em .9em; border-left: 3px solid #b9c9c0; color: #51615b; font-size: .9em; }
+.software-step .build-note { margin: -.5em 0 .8em; font-size: .84em; color: #5e655e; }
+.software-step figure { margin: 0; min-width: 0; }
+.software-step figure > a {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  outline-offset: 3px;
+  cursor: zoom-in;
+}
+.software-step figure img { display: block; width: auto; max-width: 100%; height: auto; border: 1px solid #cdd4d2; border-radius: 4px; }
+.software-legend { font-size: .86em; color: #586565; margin: .65em 0 0; }
+.software-points { list-style: none; counter-reset: point; padding: 0; margin: 1rem 0 0; }
+.software-points li { counter-increment: point; position: relative; padding-left: 2em; margin: .7em 0 0; line-height: 1.6; }
+.software-points li::before { content: counter(point); position: absolute; top: .17em; left: 0; display: grid; place-items: center; width: 1.48em; height: 1.48em; border-radius: 50%; background: #a63422; color: #fff; font: 700 .86em/1 Arial, sans-serif; }
+.software-related { margin: 1.75rem 0 .7rem; }
+@media (min-width: 1000px) {
+  .software-step.compact .software-instructions { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, .92fr); gap: 1.4rem; align-items: center; }
+  .software-step.compact .software-points { margin-top: 0; }
+  .software-step.compact .software-points li:first-child { margin-top: 0; }
+}
+@media (max-width: 800px) {
+  .software-layout { display: block; }
+  .software-index { position: static; padding: 1rem 0; border-bottom: 1px solid #dce2e2; }
+  .software-index ul { display: flex; flex-wrap: wrap; gap: .4rem 1rem; padding: 0; border: 0; }
+  .software-index li { margin: 0; }
+}
+@media (max-width: 540px) {
+  .software-card { grid-template-columns: 1fr; gap: .75rem; }
+  .software-card .software-cover { max-width: 340px; }
+  .software-guide { margin-top: 1.25rem; }
+  .software-start, .software-step { padding: 1.35rem 0; }
+}
+@media print {
+  .software-index, .software-back, .software-related, .software-actions { display: none; }
+  .software-layout { display: block; }
+  .software-step figure { break-inside: avoid; }
+}

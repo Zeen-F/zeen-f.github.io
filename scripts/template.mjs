@@ -5,11 +5,11 @@ const tr = (value, lang) => typeof value === 'object' && value !== null ? value[
 const t = (value, lang) => escape(tr(value, lang));
 const rich = (value, lang) => t(value,lang).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
 const labels = {
-  en: { home:'Homepage',about:'About Me',research:'Research',news:'News',publications:'Publications',awards:'Honors and Awards',experience:'Experience',education:'Education',cv:'Academic CV',print:'Print / Save as PDF',back:'Back to homepage',skip:'Skip to content',menu:'More navigation links',paper:'paper',code:'code',project:'Read project introduction' },
-  zh: { home:'主页',about:'关于我',research:'研究兴趣',news:'近况',publications:'论文发表',awards:'荣誉与奖项',experience:'项目经历',education:'教育经历',cv:'学术简历',print:'打印 / 保存为 PDF',back:'返回主页',skip:'跳转到正文',menu:'更多导航链接',paper:'论文',code:'代码',project:'查看项目介绍' }
+  en: { home:'Homepage',about:'About Me',research:'Research',news:'News',publications:'Publications',software:'Software',awards:'Honors and Awards',experience:'Experience',education:'Education',cv:'Academic CV',print:'Print / Save as PDF',back:'Back to homepage',skip:'Skip to content',menu:'More navigation links',paper:'paper',code:'code',project:'Read project introduction' },
+  zh: { home:'主页',about:'关于我',research:'研究兴趣',news:'近况',publications:'论文发表',software:'科研软件',awards:'荣誉与奖项',experience:'项目经历',education:'教育经历',cv:'学术简历',print:'打印 / 保存为 PDF',back:'返回主页',skip:'跳转到正文',menu:'更多导航链接',paper:'论文',code:'代码',project:'查看项目介绍' }
 };
-const anchors = {about:'about-me',research:'-research',news:'-news',publications:'-publications',awards:'-honors-and-awards',experience:'-experience',education:'-educations'};
-const emojis = {research:'🔍',news:'🔥',publications:'📝',awards:'🎖',experience:'💻',education:'📖'};
+const anchors = {about:'about-me',research:'-research',news:'-news',publications:'-publications',software:'software',awards:'-honors-and-awards',experience:'-experience',education:'-educations'};
+const emojis = {research:'🔍',news:'🔥',publications:'📝',software:'🧰',awards:'🎖',experience:'💻',education:'📖'};
 const base = lang => lang==='en'?'/':'/zh/';
 export const tcadPath = 'research-practice/codex-tcad-harness/';
 const pagePath = page => typeof page==='object'?page.path:page==='cv'?'cv/':page==='tcad'?tcadPath:'';
@@ -32,7 +32,7 @@ function projectLink(p,lang) {
 function heading(id,lang) {return `<h1 id="${anchors[id]}">${emojis[id]} ${labels[lang][id]}</h1>`;}
 function masthead(lang,page) {
   const l=labels[lang], home=base(lang), alternate=base(lang==='en'?'zh':'en')+pagePath(page);
-  return `<div class="masthead"><div class="masthead__inner-wrap"><div class="masthead__menu"><nav id="site-nav" class="greedy-nav" aria-label="${lang==='en'?'Main navigation':'主导航'}"><button type="button" aria-label="${l.menu}" aria-expanded="false" aria-controls="overflow-nav"><div class="navicon"></div></button><ul class="visible-links"><li class="masthead__menu-item masthead__menu-item--lg masthead__menu-home-item"><a href="${home}#about-me">${l.home}</a></li>${['about','research','news','publications','awards','experience','education'].map(id=>`<li class="masthead__menu-item"><a href="${home}#${anchors[id]}">${l[id]}</a></li>`).join('')}<li class="masthead__menu-item nav-language"><a class="language-switch" href="${alternate}" lang="${lang==='en'?'zh-CN':'en'}" hreflang="${lang==='en'?'zh-CN':'en'}">${lang==='en'?'中文':'EN'}</a></li></ul><ul id="overflow-nav" class="hidden-links hidden"></ul></nav></div></div></div>`;
+  return `<div class="masthead"><div class="masthead__inner-wrap"><div class="masthead__menu"><nav id="site-nav" class="greedy-nav" aria-label="${lang==='en'?'Main navigation':'主导航'}"><button type="button" aria-label="${l.menu}" aria-expanded="false" aria-controls="overflow-nav"><div class="navicon"></div></button><ul class="visible-links"><li class="masthead__menu-item masthead__menu-item--lg masthead__menu-home-item"><a href="${home}#about-me">${l.home}</a></li>${['about','research','news','publications','software','awards','experience','education'].map(id=>`<li class="masthead__menu-item"><a href="${home}#${anchors[id]}">${l[id]}</a></li>`).join('')}<li class="masthead__menu-item nav-language"><a class="language-switch" href="${alternate}" lang="${lang==='en'?'zh-CN':'en'}" hreflang="${lang==='en'?'zh-CN':'en'}">${lang==='en'?'中文':'EN'}</a></li></ul><ul id="overflow-nav" class="hidden-links hidden"></ul></nav></div></div></div>`;
 }
 function sidebar(d,lang) {
   const l=labels[lang];
@@ -45,15 +45,15 @@ function education(d,lang) {
 function awards(d,lang) {return `<ul>${d.awards.map(a=>`<li><em>${escape(a.year)}</em>: 🎖️ <strong>${t(a.title,lang)}</strong>, ${t(a.note,lang)}</li>`).join('')}</ul>`;}
 function doc(d,lang,page,body) {
   const detail=typeof page==='object'?page:null;
-  const kind=detail?'publication':page;
+  const kind=detail ? (detail.kind || 'publication') : page;
   const route=base(lang)+pagePath(page);
-  const title=`${tr(d.name,lang)} - ${detail?detail.title:kind==='cv'?labels[lang].cv:kind==='tcad'?'Codex × TCAD':'Homepage'}`;
+  const title=`${tr(d.name,lang)} - ${detail?tr(detail.title,lang):kind==='cv'?labels[lang].cv:kind==='tcad'?'Codex × TCAD':'Homepage'}`;
   const project=kind==='tcad'?d.projects.find(p=>p.id==='tcad'):null;
   const description=detail?detail.description:project?project.description:d.description;
   const sharePoster=detail?detail.poster:project?.poster;
-  const shareImage=sharePoster?sharePoster.image:d.avatar;
+  const shareImage=kind==='software' ? softwareImage(detail,detail.steps[0].id) : sharePoster?.image || d.avatar;
   const shareImageAlt=detail?detail.imageAlt:project?.poster?.alt;
-  return `<!doctype html><html lang="${lang==='en'?'en':'zh-CN'}" class="no-js"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escape(title)}</title><meta name="description" content="${t(description,lang)}"><meta name="author" content="Zeen Fang"><meta name="theme-color" content="#ffffff"><link rel="canonical" href="${d.siteUrl}${route}"><link rel="alternate" hreflang="en" href="${d.siteUrl}/${pagePath(page)}"><link rel="alternate" hreflang="zh-CN" href="${d.siteUrl}/zh/${pagePath(page)}"><link rel="alternate" hreflang="x-default" href="${d.siteUrl}/${pagePath(page)}"><meta property="og:title" content="${escape(title)}"><meta property="og:description" content="${t(description,lang)}"><meta property="og:url" content="${d.siteUrl}${route}"><meta property="og:type" content="${detail?'article':'website'}"><meta property="og:image" content="${d.siteUrl}${shareImage}">${sharePoster?`<meta property="og:image:width" content="${sharePoster.width}"><meta property="og:image:height" content="${sharePoster.height}"><meta property="og:image:alt" content="${t(shareImageAlt,lang)}"><meta name="twitter:card" content="summary_large_image">`:''}${iconLinks}<link rel="stylesheet" href="/assets/reference/main.css"><link rel="stylesheet" href="/assets/site.css">${kind==='tcad'?'<link rel="stylesheet" href="/assets/tcad.css">':''}${detail?'<link rel="stylesheet" href="/assets/publication.css">':''}<script>document.documentElement.className='js';</script></head><body data-page="${kind}"><a class="skip-link" href="#main-content">${labels[lang].skip}</a>${masthead(lang,page)}${body}<script src="/assets/reference/main.min.js"></script><script src="/assets/site.js"></script>${kind==='tcad'?'<script src="/assets/tcad.js"></script>':''}</body></html>`;
+  return `<!doctype html><html lang="${lang==='en'?'en':'zh-CN'}" class="no-js"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${escape(title)}</title><meta name="description" content="${t(description,lang)}"><meta name="author" content="Zeen Fang"><meta name="theme-color" content="#ffffff"><link rel="canonical" href="${d.siteUrl}${route}"><link rel="alternate" hreflang="en" href="${d.siteUrl}/${pagePath(page)}"><link rel="alternate" hreflang="zh-CN" href="${d.siteUrl}/zh/${pagePath(page)}"><link rel="alternate" hreflang="x-default" href="${d.siteUrl}/${pagePath(page)}"><meta property="og:title" content="${escape(title)}"><meta property="og:description" content="${t(description,lang)}"><meta property="og:url" content="${d.siteUrl}${route}"><meta property="og:type" content="${detail?'article':'website'}"><meta property="og:image" content="${d.siteUrl}${shareImage}">${sharePoster?`<meta property="og:image:width" content="${sharePoster.width}"><meta property="og:image:height" content="${sharePoster.height}"><meta property="og:image:alt" content="${t(shareImageAlt,lang)}"><meta name="twitter:card" content="summary_large_image">`:''}${iconLinks}<link rel="stylesheet" href="/assets/reference/main.css"><link rel="stylesheet" href="/assets/site.css">${kind==='tcad'?'<link rel="stylesheet" href="/assets/tcad.css">':''}${kind==='publication'?'<link rel="stylesheet" href="/assets/publication.css">':''}${kind==='home'||kind==='software'?'<link rel="stylesheet" href="/assets/software.css">':''}<script>document.documentElement.className='js';</script></head><body data-page="${kind}"><a class="skip-link" href="#main-content">${labels[lang].skip}</a>${masthead(lang,page)}${body}<script src="/assets/reference/main.min.js"></script><script src="/assets/site.js"></script>${kind==='tcad'?'<script src="/assets/tcad.js"></script>':''}</body></html>`;
 }
 export function renderHome(d,lang) {
   const intro=`<p><span class="anchor" id="about-me"></span></p>${d.about.map(p=>`<p>${rich(p,lang)}</p>`).join('')}`;
@@ -61,7 +61,7 @@ export function renderHome(d,lang) {
   const news=`${heading('news',lang)}<ul>${d.news.map(n=>`<li><em>${n.date}</em>: 🎉 ${n.url?`<a href="${n.url}" target="_blank" rel="noopener noreferrer">${t(n.text,lang)}</a>`:t(n.text,lang)}</li>`).join('')}</ul>`;
   const pubs=`${heading('publications',lang)}${d.publications.map(p=>`<div class="publication-card" id="${p.id}"><a class="publication-image-link image-popup" href="${p.poster?.image||p.image}" title="${t(p.imageAlt,lang)}"><img class="publication-thumb" src="${p.image}" alt="${t(p.imageAlt,lang)}" width="${p.poster?.width||1200}" height="${p.poster?.height||680}"><span class="publication-preview" aria-hidden="true"><img src="${p.image}" alt=""></span></a><div class="publication-content"><h3><a href="${p.doi}" target="_blank" rel="noopener noreferrer">${escape(p.title)}</a></h3><p class="publication-authors">${authors(p)}</p><p class="publication-desc">${t(p.description,lang)} ${t(p.contribution,lang)}</p>${publicationLinks(p,lang)}</div></div>`).join('')}`;
   const experiences=`${heading('experience',lang)}${d.projects.map(p=>`<div class="timeline-entry"><div class="timeline-text"><p class="timeline-title">${projectTitle(p,lang)}</p><p>${p.period} · ${t(p.category,lang)}</p><p>${t(p.description,lang)}</p><p>${t(p.scope,lang)}</p>${projectLink(p,lang)}</div><div class="timeline-logo"><a class="image-popup" href="${p.poster?.image||p.image}" title="${t(p.poster?.alt||p.imageAlt,lang)}"><img class="timeline-logo-img" src="${p.poster?.preview||p.image}" alt="${t(p.poster?.alt||p.imageAlt,lang)}"></a></div></div>`).join('')}`;
-  return doc(d,lang,'home',`<div id="main" role="main">${sidebar(d,lang)}<article class="page" id="main-content"><div class="page__inner-wrap"><section class="page__content">${intro}${research}${news}${pubs}${heading('awards',lang)}${awards(d,lang)}${experiences}${heading('education',lang)}${education(d,lang)}</section></div></article></div>`);
+  return doc(d,lang,'home',`<div id="main" role="main">${sidebar(d,lang)}<article class="page" id="main-content"><div class="page__inner-wrap"><section class="page__content">${intro}${softwareIntro(d.software,lang)}${research}${news}${pubs}${softwareList(d.software,lang)}${heading('awards',lang)}${awards(d,lang)}${experiences}${heading('education',lang)}${education(d,lang)}</section></div></article></div>`);
 }
 export function renderCV(d,lang) {
   const l=labels[lang];
@@ -88,4 +88,106 @@ export function renderPublication(d,lang,p) {
   const download=lang==='en'?'Download PNG':'下载 PNG 原图';
   const body=`<main id="main-content" class="publication-detail"><p class="publication-back"><a href="${base(lang)}#${p.id}">← ${back}</a></p><article><header><p class="publication-kicker">${lang==='en'?'Paper overview':'论文对外海报'}</p><h1>${escape(p.title)}</h1><p class="publication-authors">${authors(p)}</p>${publicationLinks(p,lang,false)}<p>${t(p.description,lang)}</p><p class="publication-contribution">${t(p.contribution,lang)}</p></header><figure class="paper-poster"><a class="image-popup" href="${poster.image}" title="${t(p.imageAlt,lang)}"><img src="${poster.image}" width="${poster.width}" height="${poster.height}" alt="${t(p.imageAlt,lang)}"></a><figcaption>${lang==='en'?'AI-assisted overview based on the published paper.':'依据已发表论文制作的 AI 辅助概览图。'} ${t(poster.caption,lang)}</figcaption></figure><div class="poster-actions"><a class="image-popup" href="${poster.image}" title="${t(p.imageAlt,lang)}">${full}</a><a href="${poster.image}?download=1" download="${p.id}-paper-poster.png">${download} ↓</a></div><section class="poster-notes"><h2>${lang==='en'?'Figure notes':'图示说明'}</h2><ul>${poster.notes.map(n=>`<li>${t(n,lang)}</li>`).join('')}</ul></section><p class="publication-back"><a href="${base(lang)}#${p.id}">← ${back}</a></p></article></main>`;
   return doc(d,lang,p,body);
+}
+
+const softwareLabels = {
+  zh: {
+    guide: '功能截图与使用方法', download: '下载安装包', source: 'GitHub 源码', release: '对应发布说明',
+    index: '本页操作', start: '开始使用', back: '返回科研软件',
+    enlarge: '查看原尺寸截图', marks: '图中编号对应下方或图旁的操作。点击截图可查看原尺寸。',
+    preview: '本机开发版功能', handout: '下载示例讲义（PDF，3 页）'
+  },
+  en: {
+    guide: 'Screenshots and user guide', download: 'Download desktop app', source: 'Source on GitHub', release: 'Release notes',
+    index: 'In this guide', start: 'Getting started', back: 'Back to software',
+    enlarge: 'Open full-size screenshot', marks: 'The numbered marks match the instructions beside or below each image. Select an image to open it at full size.',
+    preview: 'Desktop development feature', handout: 'Download the example handout (3-page PDF)'
+  }
+};
+
+function softwareImage(project, name) {
+  return `/assets/software/${escape(project.id)}/${escape(name)}.webp`;
+}
+
+function softwareIntro(projects, lang) {
+  const link = id => {
+    const project = projects.find(item => item.id === id);
+    return `<a href="${base(lang)}${escape(project.path)}">${t(project.title,lang)}</a>`;
+  };
+  const reader = link('xireader');
+  const workbench = link('knowledge-workbench');
+  return lang === 'zh'
+    ? `<p>为了在整理笔记时能找回论文里的原图和原话，我开发了 ${reader} 做 PDF 阅读与批注，也开发了 ${workbench} 整理有来源的科研笔记。</p>`
+    : `<p>I develop ${reader} for reading and annotating papers, and ${workbench} for turning those excerpts into notes I can trace back to the original page or figure.</p>`;
+}
+
+function softwareList(projects, lang) {
+  const l = softwareLabels[lang];
+  const cards = projects.map(project => {
+    const href = base(lang) + escape(project.path);
+    const name = t(project.title,lang);
+    const cover = project.steps[0];
+    return `<article class="software-card">
+      <a class="software-cover" href="${href}" aria-label="${name} · ${l.guide}">
+        <img src="${softwareImage(project,'cover')}" width="${cover.size[0]}" height="${cover.size[1]}" alt="${t(cover.alt,lang)}" loading="lazy" decoding="async">
+      </a>
+      <div><h2><a href="${href}">${name}</a></h2>
+        <p>${t(project.description,lang)}</p>
+        <p class="software-actions"><a href="${href}">${l.guide}</a><a href="${escape(project.repo)}">GitHub</a></p>
+      </div>
+    </article>`;
+  });
+  return heading('software',lang) + `<div class="software-list">${cards.join('')}</div>`;
+}
+
+function softwareStep(project, step, lang) {
+  const l = softwareLabels[lang];
+  const [width,height] = step.size;
+  const name = t(step.title,lang);
+  const image = softwareImage(project,step.id);
+  const anchor = escape(step.id);
+  const sizeClass = width < 820 ? ' compact' : '';
+  return `<section id="${anchor}" class="software-step${sizeClass}" aria-labelledby="title-${anchor}">
+    <h2 id="title-${anchor}">${name}</h2>
+    ${step.preview ? `<p class="build-note">${l.preview}</p>` : ''}
+    <div class="software-instructions">
+      <figure><a href="${image}" aria-label="${l.enlarge} · ${name}">
+        <img src="${image}" width="${width}" height="${height}" alt="${t(step.alt,lang)}" loading="lazy" decoding="async">
+      </a></figure>
+      <ol class="software-points">${step.points.map(point => `<li>${t(point,lang)}</li>`).join('')}</ol>
+    </div>
+  </section>`;
+}
+
+export function renderSoftware(data, lang, project) {
+  const l = softwareLabels[lang];
+  const back = `<a href="${base(lang)}#software">← ${l.back}</a>`;
+  // Native fragment navigation also gives a chapter a shareable URL.
+  const indexLink = (id, title) => `<li><a href="#${escape(id)}" data-ss-opts='{"excludeWithin":[".software-index"]}'>${title}</a></li>`;
+  const toc = indexLink('start',l.start) + project.steps.map(step => indexLink(step.id,t(step.title,lang))).join('');
+  const body = `<main id="main-content" class="software-guide">
+    <p class="software-back">${back}</p>
+    <header class="software-hero">
+      <h1>${t(project.title,lang)}</h1><p>${t(project.intro,lang)}</p>
+      <p class="software-actions"><a href="${escape(project.repo)}/releases">${l.download}</a><a href="${escape(project.repo)}">${l.source}</a></p>
+    </header>
+    <div class="software-layout">
+      <nav class="software-index" aria-label="${l.index}"><strong>${l.index}</strong>
+        <ul>${toc}</ul>
+      </nav>
+      <div class="software-chapters">
+        <section id="start" class="software-start" aria-labelledby="title-start">
+          <h2 id="title-start">${l.start}</h2>
+          <ol>${project.install.map(line => `<li>${t(line,lang)}</li>`).join('')}</ol>
+          <p><a href="/assets/software/rc-filter-handout.pdf" download>${l.handout}</a></p>
+          <p class="software-version">${t(project.versionNote,lang)} <a href="${escape(project.repo)}/releases/tag/${escape(project.release)}">${l.release} · ${escape(project.release)}</a></p>
+          <p class="software-legend">${l.marks}</p>
+        </section>
+        ${project.steps.map(step => softwareStep(project,step,lang)).join('')}
+        <p class="software-related"><a href="${base(lang)}${escape(project.related.path)}">${t(project.related.label,lang)} →</a></p>
+        <p class="software-back">${back}</p>
+      </div>
+    </div>
+  </main>`;
+  return doc(data,lang,{...project, kind:'software'},body);
 }

@@ -1,0 +1,464 @@
+[
+  {
+    "id": "xireader",
+    "path": "software/xireader/",
+    "title": {
+      "zh": "XiReader",
+      "en": "XiReader"
+    },
+    "repo": "https://github.com/Zeen-F/XiReader",
+    "release": "v1.2.0-beta.6",
+    "description": {
+      "zh": "在 PDF 原页上划重点、框选图表、写旁注。导出的 Markdown 能带走引文、评论和页码。",
+      "en": "Read and mark up a PDF, capture a figure, and export your notes to Markdown with the quotation, comment and page number."
+    },
+    "intro": {
+      "zh": "读电路论文时，我常想把一条曲线和当时的问题一起留下。在 XiReader 里，我可以一边看原图，一边写笔记，再把选中的证据交给知识工作台。下面用一份原创的一阶 RC 滤波器讲义走一遍。",
+      "en": "I built XiReader to keep a question beside the curve that prompted it. I can read the original PDF, write alongside it and carry a selected passage or figure into Knowledge Workbench. This walkthrough uses a short RC filter handout I made for the example."
+    },
+    "install": [
+      {
+        "zh": "在发布页选择安装包。Apple Silicon Mac 使用 ARM64 DMG，打开后把应用拖入「应用程序」。Windows x64 使用 ZIP，完整解压后打开 Paperdesk.exe。",
+        "en": "Choose the ARM64 DMG for an Apple Silicon Mac and drag the app into Applications. On Windows x64, extract the entire ZIP and open Paperdesk.exe."
+      },
+      {
+        "zh": "首次打开后点击「导入 PDF」，或从「文件 → 打开 Obsidian 仓库」选择已有知识库，再从左栏打开其中的 PDF。要把圈出的图送到工作台，两款应用都选同一个库。",
+        "en": "Choose 导入 PDF to import a file. To read an existing Obsidian PDF in place, choose 文件 → 打开 Obsidian 仓库 and open the file from the left sidebar. Choose the same vault in both tools if you want to transfer an excerpt."
+      }
+    ],
+    "versionNote": {
+      "zh": "截图取自 2026 年 11 月 20 日实际运行的 Mac 桌面开发版。beta.6 下载包沿用 Paperdesk 文件名，已含阅读、批注、翻译和材料传递。图中的可调阅读侧栏与 Codex 对话属于后续开发功能。",
+      "en": "Captured from the Mac desktop development build on 20 November 2026. The beta.6 downloads keep the Paperdesk filename and include reading, annotations, translation and material transfer. The adjustable reading sidebar and Codex conversation shown here were developed after that package."
+    },
+    "related": {
+      "path": "software/knowledge-workbench/#source",
+      "label": {
+        "zh": "在知识工作台里找到刚才圈出的图",
+        "en": "Find the transferred figure in Knowledge Workbench"
+      }
+    },
+    "steps": [
+      {
+        "id": "reading",
+        "size": [
+          1440,
+          928
+        ],
+        "title": {
+          "zh": "边读 PDF，边记问题",
+          "en": "Read and write side by side"
+        },
+        "alt": {
+          "zh": "XiReader 左侧显示文献，中间是已高亮的 RC 曲线讲义，右侧是已保存的阅读笔记。",
+          "en": "The PDF library, a highlighted RC handout and the saved reading note in XiReader."
+        },
+        "points": [
+          {
+            "zh": "从左栏打开文献。连接 Obsidian 后，可以展开原来的资料文件夹。",
+            "en": "Open the paper from the left sidebar. A connected Obsidian vault keeps its folder hierarchy."
+          },
+          {
+            "zh": "在右侧「笔记」写下自己的问题。示例笔记记下了一个关于负载的问题。接入负载后，低频增益会怎样变化？",
+            "en": "Write in the 笔记 tab on the right. My example asks how the low-frequency gain changes when a load is connected."
+          },
+          {
+            "zh": "点击「导出 Markdown」。导出文件包含笔记、批注引文、评论和对应的 PDF 页码。",
+            "en": "Choose 导出 Markdown. The file includes the note, highlighted text, comments and their PDF page numbers."
+          }
+        ]
+      },
+      {
+        "id": "navigation",
+        "size": [
+          1440,
+          928
+        ],
+        "title": {
+          "zh": "按章节找到原页",
+          "en": "Jump to the original page"
+        },
+        "alt": {
+          "zh": "目录面板列出三个章节，工具栏显示实际 PDF 页码。",
+          "en": "The contents panel lists three chapters beside the reader’s PDF page counter."
+        },
+        "points": [
+          {
+            "zh": "在阅读工具栏打开「目录」。示例讲义内置了三个章节。",
+            "en": "Open 目录 in the reading toolbar. The sample handout has three embedded chapter bookmarks."
+          },
+          {
+            "zh": "点击「Step response」跳到第二页。在长文献里，也可以用旁边的「书签」保存想重读的位置。",
+            "en": "Choose “Step response” to jump to the second page. The neighbouring 书签 control lets you keep a personal bookmark."
+          },
+          {
+            "zh": "从页码框核对当前 PDF 页，也可以输入页码直接跳转。",
+            "en": "Check the physical PDF page in the page field, or type a number to go there directly."
+          }
+        ]
+      },
+      {
+        "id": "highlight",
+        "size": [
+          576,
+          482
+        ],
+        "title": {
+          "zh": "给一句原文加批注",
+          "en": "Annotate a sentence"
+        },
+        "alt": {
+          "zh": "高亮批注窗口保留英文原句，下方有评论、颜色和保存按钮。",
+          "en": "The annotation dialog preserves the English quotation above the comment, colour choices and Save button."
+        },
+        "points": [
+          {
+            "zh": "用鼠标选中一句话，点击「高亮并批注」，先核对窗口里的原文。",
+            "en": "Select a sentence, choose 高亮并批注 and check the quotation in the dialog."
+          },
+          {
+            "zh": "在评论框写下自己的判断。例如，这里的 0.707 倍是相对于低频增益。",
+            "en": "Add the interpretation you want to keep. Here, 0.707 is relative to the low-frequency gain."
+          },
+          {
+            "zh": "选择颜色，点击「保存批注」。之后可以从「批注」列表回到这一页。",
+            "en": "Choose a colour and save the annotation. Its entry in 批注 takes you back to the source page."
+          }
+        ]
+      },
+      {
+        "id": "translation",
+        "size": [
+          509,
+          452
+        ],
+        "title": {
+          "zh": "核对要翻译的选文",
+          "en": "Preview a translation request"
+        },
+        "alt": {
+          "zh": "翻译预览显示目标语言、选中的英文原句和确认发送按钮。",
+          "en": "The translation preview shows the target language, selected English text and confirmation control."
+        },
+        "points": [
+          {
+            "zh": "第一次使用先在「翻译设置」配置自己的服务。划选带文字层的 PDF 原文，点「翻译」，选择目标语言。",
+            "en": "Configure your provider in 翻译设置. Select text from a PDF with a text layer, choose 翻译 and set the target language."
+          },
+          {
+            "zh": "核对「原文」框中的文字。换一段原文时，回到 PDF 重新划选。",
+            "en": "Check the exact source text in 原文. Return to the PDF to select a different passage."
+          },
+          {
+            "zh": "服务配置好后，点击「确认发送选文」才会发送。图中是首次配置前的状态。",
+            "en": "确认发送选文 sends the selected text once the provider is configured. The screenshot shows the first-use state before configuration."
+          }
+        ]
+      },
+      {
+        "id": "transfer",
+        "size": [
+          576,
+          602
+        ],
+        "title": {
+          "zh": "把一张图连同页码送到工作台",
+          "en": "Send a figure with its page number"
+        },
+        "alt": {
+          "zh": "发送窗口预览框选的 RC 幅频曲线、实际第 1 页和随图附带的问题。",
+          "en": "The transfer dialog contains the selected RC response curve, its page number and the accompanying comment."
+        },
+        "points": [
+          {
+            "zh": "两款应用连接同一个 Obsidian 库后，在 XiReader 打开「区域批注」，框住图表，点「发送到知识库」。先看预览，确认坐标轴和图注都在选区内。",
+            "en": "With both apps on the same Obsidian vault, choose 区域批注, drag around the figure and choose 发送到知识库. Check that the axes and caption are inside the preview."
+          },
+          {
+            "zh": "在「你的想法」里写下想核对的地方。这里记下了曲线穿过 −3 dB 的位置。",
+            "en": "Add a comment in 你的想法. Here I noted where the curve crosses −3 dB."
+          },
+          {
+            "zh": "确认「发送到知识库」。在工作台收集箱里可以看到这张原图、文献标题和 PDF 第 1 页。",
+            "en": "Confirm 发送到知识库. The Workbench inbox receives the original crop, paper title and PDF page 1."
+          }
+        ]
+      },
+      {
+        "id": "codex",
+        "size": [
+          449,
+          335
+        ],
+        "title": {
+          "zh": "带着一条批注问 Codex",
+          "en": "Ask Codex about an annotation"
+        },
+        "alt": {
+          "zh": "Codex 侧栏展示问题草稿、将发送的页码以及来自第 1 页的批注引文。",
+          "en": "The Codex sidebar shows a draft question, the page context and the quotation attached to it."
+        },
+        "points": [
+          {
+            "zh": "在批注上点「问 Codex」，写下具体问题。需要发送时，先连接已登录的本机 Codex CLI。",
+            "en": "Choose 问 Codex on an annotation and write a question. Connect a signed-in local Codex CLI when you want to send it."
+          },
+          {
+            "zh": "点「核对上下文」，展开「将发送的参考」，检查引用的文献和实际页码。",
+            "en": "Choose 核对上下文 and expand 将发送的参考 to check the paper and physical page number."
+          },
+          {
+            "zh": "读一遍附带的引文和评论，再决定是否发送。收到回答后，可以预览并追加到批注或笔记。",
+            "en": "Check the quoted passage and comment before sending. A returned answer can be previewed and appended to the annotation or note."
+          }
+        ],
+        "preview": true
+      }
+    ]
+  },
+  {
+    "id": "knowledge-workbench",
+    "path": "software/knowledge-workbench/",
+    "title": {
+      "zh": "知识工作台",
+      "en": "Knowledge Workbench"
+    },
+    "repo": "https://github.com/Zeen-F/knowledge-workbench",
+    "release": "v0.1.0-alpha.6",
+    "description": {
+      "zh": "把摘录、截图和自己的想法收在一起，对着原始材料审核草稿，再存回 Obsidian 知识库。",
+      "en": "Collect excerpts, screenshots and questions, review a draft against its sources, and save the result to an Obsidian vault."
+    },
+    "intro": {
+      "zh": "从 PDF 截下一张图容易，过几天再找出它的页码和适用条件却很费时间。我用知识工作台把材料、自己的判断和写好的 Markdown 放在同一个库里。这份指南接着 XiReader 的 RC 曲线，走到一篇能回查来源的笔记。",
+      "en": "I built Knowledge Workbench to keep a figure, its assumptions and my interpretation together after I finish reading. Here I follow a curve captured in XiReader through to a Markdown note whose source I can revisit."
+    },
+    "install": [
+      {
+        "zh": "从发布页下载适合系统的版本。Apple Silicon Mac 打开 ARM64 DMG，将应用拖入「应用程序」。Windows x64 运行 EXE 安装器。",
+        "en": "Download the ARM64 DMG for an Apple Silicon Mac and drag the app into Applications, or run the EXE installer on Windows x64."
+      },
+      {
+        "zh": "首次启动选择自己的 Obsidian 知识库根目录。点「写一篇笔记」即可开始写作。要接收 PDF 摘录，让 XiReader 连接同一个库。",
+        "en": "On first launch, select an Obsidian vault root. Choose 写一篇笔记 to start writing. To receive PDF excerpts, connect XiReader to the same vault."
+      }
+    ],
+    "versionNote": {
+      "zh": "截图取自 2026 年 11 月 20 日实际运行的 Mac 桌面开发版。公开 alpha.6 支持笔记编辑、任务收集和草稿审核。文内另行标出的子笔记与单篇优化展示本机后续开发进展。",
+      "en": "Captured from the Mac desktop development build on 20 November 2026. The public alpha.6 package supports note editing, collection tasks and draft review. Child notes and revision of an existing note are identified below as later development features."
+    },
+    "related": {
+      "path": "software/xireader/#transfer",
+      "label": {
+        "zh": "回到 XiReader 查看这张图是怎样圈选的",
+        "en": "See how the figure was captured in XiReader"
+      }
+    },
+    "steps": [
+      {
+        "id": "editor",
+        "size": [
+          1390,
+          868
+        ],
+        "title": {
+          "zh": "在 Markdown 笔记里写公式、对照数据",
+          "en": "Write a note with equations and tables"
+        },
+        "alt": {
+          "zh": "知识工作台左侧是笔记树，中间显示 RC 公式和元件表，右侧显示目录和相关笔记。",
+          "en": "The note tree, rendered RC equation and component table, with related notes in the right sidebar."
+        },
+        "points": [
+          {
+            "zh": "从笔记树打开已有笔记，也可以点「写一篇笔记」新建。",
+            "en": "Select an existing note in the tree or start one with 写一篇笔记."
+          },
+          {
+            "zh": "在正文中输入 Markdown 表格或公式。示例把电阻、电容和对应的截止频率放在一起，便于复核。",
+            "en": "Write a Markdown table or equation in the editor. This example keeps the component values beside the calculated cutoff frequency."
+          },
+          {
+            "zh": "用「即时渲染」按钮在渲染和源码之间切换，保存后可以从同一个 Obsidian 库打开 Markdown 文件。",
+            "en": "Use 即时渲染 to switch between the rendered and source views. The saved Markdown file opens in the same Obsidian vault."
+          }
+        ]
+      },
+      {
+        "id": "source",
+        "size": [
+          954,
+          502
+        ],
+        "title": {
+          "zh": "核对来自 XiReader 的原图和页码",
+          "en": "Trace a capture back to the PDF"
+        },
+        "alt": {
+          "zh": "工作台材料预览显示 XiReader 发送的文献标题、PDF 第 1 页和完整曲线选区。",
+          "en": "Workbench’s material preview shows the source paper, physical page 1 and the figure received from XiReader."
+        },
+        "points": [
+          {
+            "zh": "打开「收集箱 → 未分类 / 历史收集」，预览刚收到的文献材料。",
+            "en": "Open 收集箱, enter 未分类 / 历史收集 and preview the item received from XiReader."
+          },
+          {
+            "zh": "在文献标题下核对实际的 PDF 页码。本例收到的是第 1 页。",
+            "en": "Check the physical PDF page beneath the document title. This capture came from page 1."
+          },
+          {
+            "zh": "对照原图和附带的想法，需要回读时点「打开材料笔记」查看来源。",
+            "en": "Compare the original crop with the comment. Open the material note (打开材料笔记) to revisit its source."
+          }
+        ]
+      },
+      {
+        "id": "inbox",
+        "size": [
+          1340,
+          1160
+        ],
+        "title": {
+          "zh": "按一次学习任务收集材料",
+          "en": "Collect materials for one study session"
+        },
+        "alt": {
+          "zh": "收集箱展示当前 RC 任务、已勾选的曲线卡片和整理所选材料的入口。",
+          "en": "The RC collection task, a selected figure card and the control that assembles the selected materials."
+        },
+        "points": [
+          {
+            "zh": "进入「收集箱」，新建一个任务或继续已有任务。把同一个问题的图片、截图和文字想法收在一起。",
+            "en": "Create or resume a task in 收集箱. Add screenshots, imported images and written observations about the same question."
+          },
+          {
+            "zh": "勾选要放在一起核对的材料。示例选了曲线和一条关于纵轴参考值的提醒。",
+            "en": "Select the items you want to compare. Here the curve is paired with a reminder to check the gain reference."
+          },
+          {
+            "zh": "点击「整理所选 2」进入本批设置。按钮上的数字就是已选材料数。",
+            "en": "Choose 整理所选 2 to configure this batch. The number on the button follows the selection."
+          }
+        ]
+      },
+      {
+        "id": "batch",
+        "size": [
+          636,
+          818
+        ],
+        "title": {
+          "zh": "先看将要交付的材料",
+          "en": "Inspect the batch before handing it over"
+        },
+        "alt": {
+          "zh": "交付预览显示两份原始材料、一篇参考笔记、随附曲线和确认共享按钮。",
+          "en": "The batch preview lists two sources, one reference note and an included figure above the confirmation button."
+        },
+        "points": [
+          {
+            "zh": "选择执行方式、参考笔记和整理配置，再点「预览交付内容」。先检查材料数和参考笔记数。",
+            "en": "Choose an execution mode, reference notes and a profile, then preview the batch. Check the source and reference counts."
+          },
+          {
+            "zh": "逐张核对要附带的图片。示例用「模拟 IC 科研」配置，提醒整理时保留元件值、单位和待核对项。",
+            "en": "Inspect each included image. The analog IC profile keeps component values, units and open questions with the material."
+          },
+          {
+            "zh": "检查无误再确认。图中选择了现有 Codex 对话。桌面也提供本机 Codex CLI 和自行配置的模型 API。",
+            "en": "Confirm once the scope is right. The screenshot uses an existing Codex conversation. The desktop app also offers the local Codex CLI and a configurable model API."
+          }
+        ]
+      },
+      {
+        "id": "review",
+        "size": [
+          1390,
+          868
+        ],
+        "title": {
+          "zh": "对照原图审核，再保存成笔记",
+          "en": "Review the draft against the source"
+        },
+        "alt": {
+          "zh": "待审稿左侧展示原始曲线，右侧显示可编辑草稿，下方有确认并保存按钮。",
+          "en": "The review view shows the original figure beside the editable draft and its acceptance control."
+        },
+        "points": [
+          {
+            "zh": "打开「待审稿」，展开左侧原始材料，核对图上的读数和参考笔记快照。",
+            "en": "Open 待审稿 and expand the source evidence. Compare the figure and captured reference text with the draft."
+          },
+          {
+            "zh": "直接编辑右侧正文。示例稿保留 R、C 和理想无负载条件，把外接负载后的变化留作问题。",
+            "en": "Edit the draft on the right. This worked example retains R, C and the unloaded assumption, and leaves the effect of loading as an open question."
+          },
+          {
+            "zh": "确认后点「确认并保存」，再从笔记树重新打开。本图使用为教程准备的示例稿演示审核。",
+            "en": "Choose 确认并保存 and reopen the note from the tree. The review is demonstrated with a draft written for this walkthrough."
+          }
+        ]
+      },
+      {
+        "id": "child-note",
+        "size": [
+          640,
+          610
+        ],
+        "title": {
+          "zh": "把一段推导拆成子笔记",
+          "en": "Give a derivation its own note"
+        },
+        "alt": {
+          "zh": "新建子笔记对话框展示子笔记标题、公式推导模板和创建入口。",
+          "en": "The child-note dialog shows its title, the derivation template and the creation control."
+        },
+        "points": [
+          {
+            "zh": "在父笔记正文的目标位置点右键，选择「新建子笔记」，填写一个能说明问题的标题。",
+            "en": "Right-click the relevant place in the parent note, choose 新建子笔记 and give the new note a specific title."
+          },
+          {
+            "zh": "类型选「学习记录」，再按用途选择模板。这里用了「公式推导」。",
+            "en": "Select 学习记录 as the note type, then choose a template. This example uses 公式推导 for a derivation."
+          },
+          {
+            "zh": "点「创建并打开」。用子笔记中的「返回父笔记」可以回到原来的位置。",
+            "en": "Choose 创建并打开. The 返回父笔记 link in the new note takes you back to the original passage."
+          }
+        ],
+        "preview": true
+      },
+      {
+        "id": "optimize",
+        "size": [
+          992,
+          730
+        ],
+        "title": {
+          "zh": "用参考笔记修订已有正文",
+          "en": "Revise an existing note with references"
+        },
+        "alt": {
+          "zh": "单篇优化窗口显示修改要求、已选参考笔记和发送内容预览入口。",
+          "en": "The revision dialog shows the editing brief, the selected reference note and the preview control."
+        },
+        "points": [
+          {
+            "zh": "在左侧笔记树中右键目标笔记，选「交给 Codex 优化」，写清楚希望保留和修改的内容。",
+            "en": "Right-click the note in the tree, choose 交给 Codex 优化 and state what to keep or change."
+          },
+          {
+            "zh": "检查推荐的参考笔记，勾选本次需要的正文，也可以按标题搜索。",
+            "en": "Review the suggested notes and keep the references needed for this revision. Search by title to add another."
+          },
+          {
+            "zh": "点击「预览发送内容」核对范围，再决定是否交给本机 Codex。返回的修订稿会进入「待审稿」。",
+            "en": "Choose 预览发送内容 to inspect the scope before asking local Codex to revise it. The revision goes to 待审稿 for review."
+          }
+        ],
+        "preview": true
+      }
+    ]
+  }
+]
