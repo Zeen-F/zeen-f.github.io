@@ -76,8 +76,11 @@ for(const page of pages) {
     assert.ok(projectLinks.every(([,attrs])=>!attrs.includes('target=')),'Internal project links must use the same tab');
     for(const p of data.publications) assert.ok(html.includes(`href="/${chinese?'zh/':''}${p.path}"`),'Each paper must link to its corresponding poster page');
     if(page==='index.html'||page==='zh/index.html') {
-      assert.ok(html.includes('id="software"'));
+      const educationHeading=html.indexOf('id="-educations"');
+      const softwareHeading=html.indexOf('id="software"');
+      assert.ok(educationHeading>=0 && softwareHeading>educationHeading,'The software section follows education');
       for (const project of software) {
+        assert.ok(html.indexOf('href="/'+(chinese?'zh/':'')+project.path+'"')>softwareHeading,'Introduce the software guides in their section');
         assert.ok(html.includes('class="software-cover" href="/'+(chinese?'zh/':'')+project.path+'"'));
         assert.ok(html.includes('src="/assets/software/'+project.id+'/cover.webp"'));
       }

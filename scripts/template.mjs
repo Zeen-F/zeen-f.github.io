@@ -32,7 +32,7 @@ function projectLink(p,lang) {
 function heading(id,lang) {return `<h1 id="${anchors[id]}">${emojis[id]} ${labels[lang][id]}</h1>`;}
 function masthead(lang,page) {
   const l=labels[lang], home=base(lang), alternate=base(lang==='en'?'zh':'en')+pagePath(page);
-  return `<div class="masthead"><div class="masthead__inner-wrap"><div class="masthead__menu"><nav id="site-nav" class="greedy-nav" aria-label="${lang==='en'?'Main navigation':'主导航'}"><button type="button" aria-label="${l.menu}" aria-expanded="false" aria-controls="overflow-nav"><div class="navicon"></div></button><ul class="visible-links"><li class="masthead__menu-item masthead__menu-item--lg masthead__menu-home-item"><a href="${home}#about-me">${l.home}</a></li>${['about','research','news','publications','software','awards','experience','education'].map(id=>`<li class="masthead__menu-item"><a href="${home}#${anchors[id]}">${l[id]}</a></li>`).join('')}<li class="masthead__menu-item nav-language"><a class="language-switch" href="${alternate}" lang="${lang==='en'?'zh-CN':'en'}" hreflang="${lang==='en'?'zh-CN':'en'}">${lang==='en'?'中文':'EN'}</a></li></ul><ul id="overflow-nav" class="hidden-links hidden"></ul></nav></div></div></div>`;
+  return `<div class="masthead"><div class="masthead__inner-wrap"><div class="masthead__menu"><nav id="site-nav" class="greedy-nav" aria-label="${lang==='en'?'Main navigation':'主导航'}"><button type="button" aria-label="${l.menu}" aria-expanded="false" aria-controls="overflow-nav"><div class="navicon"></div></button><ul class="visible-links"><li class="masthead__menu-item masthead__menu-item--lg masthead__menu-home-item"><a href="${home}#about-me">${l.home}</a></li>${['about','research','news','publications','awards','experience','education','software'].map(id=>`<li class="masthead__menu-item"><a href="${home}#${anchors[id]}">${l[id]}</a></li>`).join('')}<li class="masthead__menu-item nav-language"><a class="language-switch" href="${alternate}" lang="${lang==='en'?'zh-CN':'en'}" hreflang="${lang==='en'?'zh-CN':'en'}">${lang==='en'?'中文':'EN'}</a></li></ul><ul id="overflow-nav" class="hidden-links hidden"></ul></nav></div></div></div>`;
 }
 function sidebar(d,lang) {
   const l=labels[lang];
@@ -61,7 +61,7 @@ export function renderHome(d,lang) {
   const news=`${heading('news',lang)}<ul>${d.news.map(n=>`<li><em>${n.date}</em>: 🎉 ${n.url?`<a href="${n.url}" target="_blank" rel="noopener noreferrer">${t(n.text,lang)}</a>`:t(n.text,lang)}</li>`).join('')}</ul>`;
   const pubs=`${heading('publications',lang)}${d.publications.map(p=>`<div class="publication-card" id="${p.id}"><a class="publication-image-link image-popup" href="${p.poster?.image||p.image}" title="${t(p.imageAlt,lang)}"><img class="publication-thumb" src="${p.image}" alt="${t(p.imageAlt,lang)}" width="${p.poster?.width||1200}" height="${p.poster?.height||680}"><span class="publication-preview" aria-hidden="true"><img src="${p.image}" alt=""></span></a><div class="publication-content"><h3><a href="${p.doi}" target="_blank" rel="noopener noreferrer">${escape(p.title)}</a></h3><p class="publication-authors">${authors(p)}</p><p class="publication-desc">${t(p.description,lang)} ${t(p.contribution,lang)}</p>${publicationLinks(p,lang)}</div></div>`).join('')}`;
   const experiences=`${heading('experience',lang)}${d.projects.map(p=>`<div class="timeline-entry"><div class="timeline-text"><p class="timeline-title">${projectTitle(p,lang)}</p><p>${p.period} · ${t(p.category,lang)}</p><p>${t(p.description,lang)}</p><p>${t(p.scope,lang)}</p>${projectLink(p,lang)}</div><div class="timeline-logo"><a class="image-popup" href="${p.poster?.image||p.image}" title="${t(p.poster?.alt||p.imageAlt,lang)}"><img class="timeline-logo-img" src="${p.poster?.preview||p.image}" alt="${t(p.poster?.alt||p.imageAlt,lang)}"></a></div></div>`).join('')}`;
-  return doc(d,lang,'home',`<div id="main" role="main">${sidebar(d,lang)}<article class="page" id="main-content"><div class="page__inner-wrap"><section class="page__content">${intro}${softwareIntro(d.software,lang)}${research}${news}${pubs}${softwareList(d.software,lang)}${heading('awards',lang)}${awards(d,lang)}${experiences}${heading('education',lang)}${education(d,lang)}</section></div></article></div>`);
+  return doc(d,lang,'home',`<div id="main" role="main">${sidebar(d,lang)}<article class="page" id="main-content"><div class="page__inner-wrap"><section class="page__content">${intro}${research}${news}${pubs}${heading('awards',lang)}${awards(d,lang)}${experiences}${heading('education',lang)}${education(d,lang)}${softwareList(d.software,lang)}</section></div></article></div>`);
 }
 export function renderCV(d,lang) {
   const l=labels[lang];
@@ -137,7 +137,7 @@ function softwareList(projects, lang) {
       </div>
     </article>`;
   });
-  return heading('software',lang) + `<div class="software-list">${cards.join('')}</div>`;
+  return heading('software',lang) + softwareIntro(projects,lang) + `<div class="software-list">${cards.join('')}</div>`;
 }
 
 function softwareStep(project, step, lang) {
